@@ -76,7 +76,7 @@ const App = () => {
       
 
 <motion.div
-            className="h-[40px] w-40   absolute top-5 right-3 z-[1000] font-loadfont rounded-[20px] font-semibold text-[17px]
+            className="h-[30px] w-30 text-sm px-3 py-2 sm:h-[38px] sm:w-[170px] sm:text-base sm:text-rd-400 absolute top-5 right-3 z-[1000] font-loadfont rounded-[20px] font-semibold text-[17px]
                 flex items-center justify-center bg-gradient-to-r from-purple-600 to-indigo-600 text-white shadow-lg cursor-pointer"
             animate={{
               boxShadow: [
@@ -111,9 +111,9 @@ const App = () => {
           <Star />
         </div>
       </div>
-      {/* <div ref={timelineRef}>
+      <div ref={timelineRef}>
         <Timeline />
-      </div> */}
+      </div>
       <div ref={prizesRef}>
         <PrizesRewardsPage />
       </div>

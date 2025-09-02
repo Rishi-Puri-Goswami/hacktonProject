@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import Name from './Name'
 import GlowingBall from './GlowingBall'
 import { motion, useMotionValue, useTransform } from "framer-motion";
@@ -10,12 +10,14 @@ import image3 from "../assets/image3.png"
 import image5 from "../assets/image5.png"
 import HackathonSection from './HackathonSection';
 import logo from "../assets/logo.png"
+// import logo from "../assets/logo1.gif"
 import Timer from "./Timer"
 
 const Forntpage = () => {
   // Motion values for cursor
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
+  const targetDate = "2025-09-10T00:00:00"
 
   // Bigger div moves opposite (anti-parallax)
   const bigX = useTransform(mouseX, [0, window.innerWidth], [20, -20]);
@@ -34,24 +36,75 @@ const Forntpage = () => {
     return () => window.removeEventListener("mousemove", handleMouseMove);
   }, [mouseX, mouseY]);
 
+  //---------------------------
+  function getTimeLeft(targetDate) {
+    const target = new Date(targetDate).getTime();
+    const now = Date.now();
+    const diff = target - now;
+
+    if (diff <= 0) {
+      return { days: "00", hours: "00", minutes: "00", seconds: "00" };
+    }
+
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+    return {
+      days: String(days).padStart(2, "0"),
+      hours: String(hours).padStart(2, "0"),
+      minutes: String(minutes).padStart(2, "0"),
+      seconds: String(seconds).padStart(2, "0"),
+    };
+  }
+
+  useEffect(() => {
+    const tick = () => {
+      setTimeLeft(getTimeLeft(targetDate));
+      rafRef.current = requestAnimationFrame(tick); // keeps checking ~60fps
+    };
+
+    tick(); // start immediately
+
+    return () => cancelAnimationFrame(rafRef.current);
+  }, [targetDate]);
+
+  const [timeLeft, setTimeLeft] = useState(getTimeLeft(targetDate));
+  const rafRef = useRef(null);
+
+
   return (
 
-    
+
     <div
-    // data-scroll data-scroll-speed="-.9"
-    className='h-screen flex flex-col items-center justify-center w-full relative bg-[#0a0a0a] overflow-hidden'>
-      <div className='absolute w-fit top-4 right-[40px] z-50 font-loadfont'>
+      // data-scroll data-scroll-speed="-.9"
+      className='h-screen flex flex-col items-center justify-center w-full bg-[#0a0a0a] overflow-hidden'>
+      {/* <div className='absolute w-[200vw] bg-red-400  z-50 font-loadfont'>
+        <div className="text-center mb-16  bg-red-600  w-full  absolute  right-[900px] top-3 ">
+          <div className="flex justify-center items-center w-fit gap-4 mb-16">
+            <div className="text-center  ">
+              <div className="text-gray-300 text-xs mb-2">Days</div>
+              <div className="text-6xl md:text-7xl lg:text-4xl font-bold text-gray-300">
+                {timeLeft.days}
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div> */}
+
+      <div className='absolute md:top-0 lg:top-0 sm:top-[0px] top-14 h-10 lg:text-5xl md:text-5xl sm:text-3xl text-2xl md:bg-yllow-200/20 sm:bg-gren-600/20 lg:bg-rd-400/20 w-full bg-gree-400/30 flex justify-center items-center  z-50 font-loadfont'>
+
         <Timer />
       </div>
 
-      <div className="h-20 w-full absolute top-0 p-3 z-50 flex items-center">
-        <div className="h-[10vh] w-[10vh] ml-7 sm:h-[8vh] sm:w-[8vh] xs:h-[6vh] xs:w-[6vh]">
-          <img
-            src={logo}
-            alt="logo"
-            className="h-full w-full object-contain"
-          />
-        </div>
+      <div className="absolute top-4 left-[-9px] md:h-[10vh] sm:h-[6vh] h-[5vh] bg-gren-300 z-50 ml-7">
+        <img
+          src={logo}
+          alt="logo"
+          className="h-full w-full object-contain"
+        />
       </div>
 
       <Name />
@@ -61,10 +114,10 @@ const Forntpage = () => {
         <img src={image5} className='h-full w-full object-fill object-center opacity-90' alt="" />
       </div>
 
-      
+
 
       {/* Faded 4.0 Text */}
-      <div className="absolute top-3 inset-0 flex items-center justify-center z-10 pointer-events-none">
+      <div className="absolute top-3 w-[100vw] overflow-hidden inset-0 flex items-center justify-center z-10 pointer-events-none">
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 0.5, scale: 1 }}
@@ -85,9 +138,9 @@ const Forntpage = () => {
         >
           4.0
         </motion.div>
-      </div> 
-       <img src={image} className='absolute h-screen w-full object-top object-fill z-30 opacity-90' alt="" />
-      <img src={image2} className='absolute h-screen w-full object-top z-30 opacity-80' alt="" /> 
+      </div>
+      <img src={image} className='absolute h-screen w-full object-top object-fill z-30 opacity-90' alt="" />
+      <img src={image2} className='absolute h-screen w-full object-top z-30 opacity-80' alt="" />
 
       {/* Main Animation Section */}
       <div className="relative w-full h-screen flex items-center -bottom-[200px] justify-center overflow-hidden">
@@ -116,7 +169,7 @@ const Forntpage = () => {
           }}
           className="md:h-[66vh] md:w-[65vw] w-[10vw] absolute bottom-0 rounded-t-full z-40 backdrop-blur-lg"
         />
-        
+
 
         {/* Smaller Blue Div */}
         <motion.div
@@ -192,4 +245,4 @@ const Forntpage = () => {
   )
 }
 
-export default Forntpage ;
+export default Forntpage;

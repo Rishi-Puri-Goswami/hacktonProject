@@ -35,8 +35,7 @@ const TiltCard = () => {
 
   return (
     <div
-
-   
+    
       onMouseMove={handleMouseMove}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}

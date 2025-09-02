@@ -38,9 +38,9 @@ const CountdownTimer = ({ targetDate = "2025-09-10T00:00:00" }) => {
   }, [targetDate]);
 
   return (
-    <div className="text-center mb-16  bg-red-600  w-full  absolute  right-[900px] top-3 ">
-      <div className="flex justify-center items-center w-fit gap-4 mb-16">
-        <TimeBox label="Days"  value={timeLeft.days} />
+    <div className="text-center mb-16  bg-red600  w-fit  absolute top-3 ">
+      <div className="flex justify-center items-center sm:gap-2 sm:bg-orage-400 bg-red-00 md:bg-ble-400 mb-16">
+        <TimeBox label="Days" value={timeLeft.days} />
         <Colon />
         <TimeBox label="Hours" value={timeLeft.hours} />
         <Colon />
@@ -53,16 +53,16 @@ const CountdownTimer = ({ targetDate = "2025-09-10T00:00:00" }) => {
 };
 
 const TimeBox = ({ label, value }) => (
-  <div className="text-center  ">
+  <div className="text-center bg-prple-400 px-2">
     <div className="text-gray-300 text-xs mb-2">{label}</div>
-    <div className="text-6xl md:text-7xl lg:text-4xl font-bold text-gray-300">
+    <div className="  font-bold text-gray-300">
       {value}
     </div>
   </div>
 );
 
 const Colon = () => (
-  <div className="text-6xl md:text-7xl lg:text-4xl  mt-4 font-bold text-gray-300">
+  <div className="lg:text-6xl   mt-4 font-bold text-gray-300">
     :
   </div>
 );
