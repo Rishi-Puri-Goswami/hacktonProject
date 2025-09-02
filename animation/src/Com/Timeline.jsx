@@ -52,21 +52,53 @@ const Timeline = () => {
 
     const horizontalFlicker = setInterval(() => {
         setIsFlickeringHorizontal(false);
-        setTimeout(() => setIsFlickeringHorizontal(true), Math.random() * 80 + 40);
-        setTimeout(() => setIsFlickeringHorizontal(false), Math.random() * 150 + 80);
-        setTimeout(() => setIsFlickeringHorizontal(true), Math.random() * 120 + 100);
-    }, Math.random() * 2000 + 1200);
+        setTimeout(() => setIsFlickeringHorizontal(true), 60);
+        setTimeout(() => setIsFlickeringHorizontal(false), 120);
+        setTimeout(() => setIsFlickeringHorizontal(true), 200);
+    }, 1800);
 
     const timelineData = [
-        { time: "7:30 AM", event: "Team Registration" },
-        { time: "8:00 AM", event: "Opening Ceremony" },
-        { time: "9:00 AM", event: "Hackathon Begins" },
-        { time: "9:30 AM", event: "Mentor Sessions", },
-        { time: "10:00 AM", event: "Coffee Break" },
-        { time: "10:30 AM", event: "Workshop - AI/ML" },
-        { time: "11:00 AM", event: "Networking Session" },
-        { time: "11:30 AM", event: "Progress Check" },
+        { time: "7:30 AM", event: "Team Registration", icon: "📝" },
+        { time: "8:00 AM", event: "Opening Ceremony", icon: "🎉" },
+        { time: "9:00 AM", event: "Hackathon Begins", icon: "💻" },
+        { time: "9:30 AM", event: "Mentor Sessions", icon: "🧑‍🏫" },
+        { time: "10:00 AM", event: "Coffee Break", icon: "☕" },
+        { time: "10:30 AM", event: "Workshop - AI/ML", icon: "🤖" },
+        { time: "11:00 AM", event: "Networking Session", icon: "🤝" },
+        { time: "11:30 AM", event: "Progress Check", icon: "✅" },
     ];
+
+    // Optimized star generation with fixed positions
+    const generateStars = () => {
+        const stars = [];
+        const gridCols = 10;
+        const gridRows = 8;
+        
+        for (let row = 0; row < gridRows; row++) {
+            for (let col = 0; col < gridCols; col++) {
+                // Only create stars in certain grid positions to reduce total count
+                if ((row + col) % 3 === 0) {
+                    const top = (row / (gridRows - 1)) * 100;
+                    const left = (col / (gridCols - 1)) * 100;
+                    const sizeVariant = (row + col) % 3;
+                    const size = sizeVariant === 0 ? 2 : sizeVariant === 1 ? 1.5 : 1;
+                    const animationDelay = (row * gridCols + col) % 4;
+                    
+                    stars.push({
+                        id: row * gridCols + col,
+                        top,
+                        left,
+                        size,
+                        delay: animationDelay,
+                        duration: 3 + (animationDelay % 2)
+                    });
+                }
+            }
+        }
+        return stars;
+    };
+
+    const stars = generateStars();
 
     return (
         <>
@@ -135,34 +167,27 @@ const Timeline = () => {
             </style>
 
             <div 
-    data-scroll data-scroll-speed="-.8"
-            
+                data-scroll 
+                data-scroll-speed="-.8"
                 ref={mainDivRef} 
                 className='relative -z-10 bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 pt-64 pb-64 overflow-hidden'
             >
-                {/* Enhanced Stars Background */}
+                {/* Optimized Stars Background */}
                 <div className="absolute inset-0 z-[-2] overflow-hidden">
-                    {Array.from({ length: 120 }).map((_, i) => {
-                        const top = Math.random() * 100;
-                        const left = Math.random() * 100;
-                        const size = Math.random() * 3 + 1;
-                        const delay = Math.random() * 3;
-                        const duration = Math.random() * 2 + 2;
-                        return (
-                            <div
-                                key={i}
-                                className="absolute rounded-full bg-white"
-                                style={{
-                                    top: `${top}%`,
-                                    left: `${left}%`,
-                                    width: `${size}px`,
-                                    height: `${size}px`,
-                                    boxShadow: `0 0 ${size * 3}px rgba(255, 255, 255, 0.8)`,
-                                    animation: `twinkle ${duration}s ease-in-out ${delay}s infinite alternate`
-                                }}
-                            />
-                        );
-                    })}
+                    {stars.map((star) => (
+                        <div
+                            key={star.id}
+                            className="absolute rounded-full bg-white"
+                            style={{
+                                top: `${star.top}%`,
+                                left: `${star.left}%`,
+                                width: `${star.size}px`,
+                                height: `${star.size}px`,
+                                boxShadow: `0 0 ${star.size * 3}px rgba(255, 255, 255, 0.8)`,
+                                animation: `twinkle ${star.duration}s ease-in-out ${star.delay}s infinite alternate`
+                            }}
+                        />
+                    ))}
                 </div>
 
                 {/* Enhanced Morphing Blob */}
@@ -229,7 +254,7 @@ const Timeline = () => {
                         {timelineData.map((_, i) => (
                             <motion.div
                                 key={i}
-                                className="absolute   timeline-dot rounded-full w-[16px] h-[16px] sm:w-[20px] sm:h-[20px] md:w-[24px] md:h-[24px] bg-gradient-to-br from-pink-400 to-blue-500"
+                                className="absolute timeline-dot rounded-full w-[16px] h-[16px] sm:w-[20px] sm:h-[20px] md:w-[24px] md:h-[24px] bg-gradient-to-br from-pink-400 to-blue-500"
                                 style={{
                                     top: `${difference * i}px`,
                                     left: window.innerWidth < 640 ? "-7px" : window.innerWidth < 1024 ? "-9px" : "-11px",
@@ -267,9 +292,9 @@ const Timeline = () => {
                     </div>
 
                     {/* Enhanced Event Cards */}
-                    <div className="absolute ml-5 h-[1000px]    flex w-full">
+                    <div className="absolute ml-5 h-[1000px] flex w-full">
                         {timelineData.map((item, i) => (
-                        <motion.div
+                            <motion.div
                                 key={i}
                                 className="absolute event-card rounded-xl border-[1px] border-opacity-30 cursor-pointer
                                     /* Mobile styles */
