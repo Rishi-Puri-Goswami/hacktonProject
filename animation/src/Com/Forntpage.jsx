@@ -174,12 +174,12 @@ const Forntpage = () => {
         </div>
 
         {/* Random Stars */}
-        <div className="absolute inset-0 -bottom-50 z-40">
+        {/* <div className="absolute inset-0 -bottom-50 z-40">
           <StarDemo />
         </div>
         <div className="absolute inset-0 z-0 -bottom-50">
           <StarDemo />
-        </div>
+        </div> */}
       </div>
 
       {/* Hackathon Section */}

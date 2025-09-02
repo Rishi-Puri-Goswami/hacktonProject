@@ -61,7 +61,7 @@ const About = () => {
             </div>
           </div>
         </div>
-        <FloatingStars />
+        {/* <FloatingStars /> */}
       </div>
     </div>
   )
