@@ -82,7 +82,13 @@ const Star = () => {
             >
                 <ContextLossHandler setContextLost={setContextLost} />
                 <CameraUpdater zSpring={zSpring} />
-                <Stars count={30000} speed={1} saturation={10} />
+
+{
+    window.innerWidth >= 640 ? <Stars count={30000} speed={1} saturation={10} />
+    : <Stars count={10000} speed={1} saturation={10} />
+}
+
+                
             </Canvas>
 
             <motion.div
@@ -150,7 +156,7 @@ function TexturedCylinder() {
     return (
         <mesh ref={meshRef} rotation={[-6.15, 2, -0.04]} position={[0, 0, 0]} scale={scale}>
             {/* <OrbitControls/> */}
-            <cylinderGeometry args={[3.5, 3.5, 1, 80, 80, true]} />
+            <cylinderGeometry args={[3.5, 3.5, 1, 40, 40, true]} />
             <meshStandardMaterial map={tex} transparent side={THREE.DoubleSide} />
         </mesh>
     );
