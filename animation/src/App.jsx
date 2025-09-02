@@ -6,7 +6,7 @@ import LocomotiveScroll from 'locomotive-scroll';
 import PrizesRewardsPage from "./Com/PrizesRewardsPage";
 import Glimespage from "./Com/Glimespage";
 import About from "./Com/About";
-import Timeline from "./Com/TimeLine";
+import Timeline from "./Com/Timeline";
 import Star from "./Com/Star";
 
 
