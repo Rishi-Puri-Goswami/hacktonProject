@@ -212,7 +212,17 @@ const Forntpage = () => {
         <div className="absolute md:left-[190px] left-[5px] bottom-[300px] h-[100px] w-[100px] transform translate-x-[65px] z-30">
           <GlowingBall gradientColors="radial-gradient(circle, rgba(255,80,80,1) 0%, rgba(200,30,30,0.9) 50%, rgba(120,0,0,0.8) 80%)" />
         </div>
-       
+        {/* Random Stars  */}
+
+
+
+
+         {/* <div className="absolute inset-0 -bottom-50 z-40">
+          <StarDemo />
+        </div>
+        <div className="absolute inset-0 z-0 -bottom-50">
+          <StarDemo />
+        </div> */}
       </div>
       
       {/* Hackathon Section */}

@@ -10,8 +10,8 @@ const Timeline = () => {
     const timelineRef = useRef(null);
 
     const [brightness, setBrightness] = useState(1.3);
-    const x = useMotionValue(window.innerWidth / 2);
-    const y = useMotionValue(window.innerHeight / 2);
+    const x = useMotionValue(typeof window !== 'undefined' ? window.innerWidth / 2 : 400);
+    const y = useMotionValue(typeof window !== 'undefined' ? window.innerHeight / 2 : 300);
 
     // Check if device is mobile
     useEffect(() => {
@@ -34,8 +34,8 @@ const Timeline = () => {
     const timelineHeight = useTransform(scrollYProgress, [0, 1], [100, 1000]);
 
     // Motion values for smooth cursor follow
-    const mouseX = useMotionValue(window.innerWidth / 2);
-    const mouseY = useMotionValue(window.innerHeight / 2);
+    const mouseX = useMotionValue(typeof window !== 'undefined' ? window.innerWidth / 2 : 400);
+    const mouseY = useMotionValue(typeof window !== 'undefined' ? window.innerHeight / 2 : 300);
     const springX = useSpring(x, { stiffness: 50, damping: 20 });
     const springY = useSpring(y, { stiffness: 50, damping: 20 });
 
@@ -63,12 +63,16 @@ const Timeline = () => {
         return () => window.removeEventListener("mousemove", handleMouseMove);
     }, [x, y]);
 
-    const horizontalFlicker = setInterval(() => {
-        setIsFlickeringHorizontal(false);
-        setTimeout(() => setIsFlickeringHorizontal(true), 60);
-        setTimeout(() => setIsFlickeringHorizontal(false), 120);
-        setTimeout(() => setIsFlickeringHorizontal(true), 200);
-    }, 1800);
+    useEffect(() => {
+        const horizontalFlicker = setInterval(() => {
+            setIsFlickeringHorizontal(false);
+            setTimeout(() => setIsFlickeringHorizontal(true), 60);
+            setTimeout(() => setIsFlickeringHorizontal(false), 120);
+            setTimeout(() => setIsFlickeringHorizontal(true), 200);
+        }, 1800);
+
+        return () => clearInterval(horizontalFlicker);
+    }, []);
 
     const timelineData = [
         { time: "7:30 AM", event: "Team Registration" },
@@ -185,7 +189,10 @@ const Timeline = () => {
                     'data-scroll-speed': '-.8'
                 })}
                 ref={mainDivRef} 
-                className='relative -z-10 bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 pt-64 pb-64 overflow-hidden'
+                className='relative -z-10 pt-64 pb-64 overflow-hidden'
+                style={{
+                    background: 'linear-gradient(to bottom, #000000 0%, #101828 100%)'
+                }}
             >
                 {/* Optimized Stars Background */}
                 <div className="absolute inset-0 z-[-2] overflow-hidden">
@@ -206,7 +213,7 @@ const Timeline = () => {
                 </div>
 
                 {/* Enhanced Morphing Blob */}
-                {window.innerWidth > 770 && (
+                {typeof window !== 'undefined' && window.innerWidth > 770 && (
                     <motion.div
                         className="absolute w-[500px] h-[500px] opacity-30 rounded-full filter blur-[60px] z-0 mix-blend-screen"
                         style={{ 
@@ -272,7 +279,7 @@ const Timeline = () => {
                                 className="absolute timeline-dot rounded-full w-[16px] h-[16px] sm:w-[20px] sm:h-[20px] md:w-[24px] md:h-[24px] bg-gradient-to-br from-pink-400 to-blue-500"
                                 style={{
                                     top: `${difference * i}px`,
-                                    left: window.innerWidth < 640 ? "-7px" : window.innerWidth < 1024 ? "-9px" : "-11px",
+                                    left: typeof window !== 'undefined' && window.innerWidth < 640 ? "-7px" : typeof window !== 'undefined' && window.innerWidth < 1024 ? "-9px" : "-11px",
                                 }}
                                 initial={{ scale: 0, opacity: 0 }}
                                 animate={{ scale: 1, opacity: 1 }}
@@ -333,8 +340,8 @@ const Timeline = () => {
                                     damping: 20
                                 }}
                                 whileHover={{ 
-                                    scale: window.innerWidth < 640 ? 1.01 : 1.02,
-                                    x: window.innerWidth < 640 ? 5 : 10,
+                                    scale: typeof window !== 'undefined' && window.innerWidth < 640 ? 1.01 : 1.02,
+                                    x: typeof window !== 'undefined' && window.innerWidth < 640 ? 5 : 10,
                                 }}
                             >
                                 <div className="flex items-center gap-2 sm:gap-3">
@@ -356,7 +363,7 @@ const Timeline = () => {
                                 </div>
                                 
                                 {/* Responsive Decorative Corner */}
-                                <div className="absolute top-0 right-0 w-4 h-4 sm:w-6 sm:h-6 md:w-8 md:h-8 bg-gradient-to-bl from-pink-500 to-transparent opacity-30 rounded-tr-xl sm:rounded-tr-2xl" />
+                                {/* <div className="absolute top-0 right-0 w-4 h-4 sm:w-6 sm:h-6 md:w-8 md:h-8 bg-gradient-to-bl from-pink-500 to-transparent opacity-30 rounded-tr-xl sm:rounded-tr-2xl"  */}
                             </motion.div>
                         ))}
                     </div>
