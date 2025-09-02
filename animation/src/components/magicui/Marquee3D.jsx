@@ -42,12 +42,12 @@ const Marquee = ({
 
 // Sample reviews data
 const reviews = [
-  { name: "Jack", username: "@jack", body: "I've never seen anything like this before. It's amazing. I love it.", img: "https://avatar.vercel.sh/jack" },
-  { name: "Jill", username: "@jill", body: "I don't know what to say. I'm speechless. This is amazing.", img: "https://avatar.vercel.sh/jill" },
-  { name: "John", username: "@john", body: "I'm at a loss for words. This is amazing. I love it.", img: "https://avatar.vercel.sh/john" },
-  { name: "Jane", username: "@jane", body: "This is the best thing I've ever seen. I can't believe it.", img: "https://avatar.vercel.sh/jane" },
-  { name: "Bob", username: "@bob", body: "I'm blown away by this. It's incredible.", img: "https://avatar.vercel.sh/bob" },
-  { name: "Alice", username: "@alice", body: "This exceeded all my expectations. Fantastic work!", img: "https://avatar.vercel.sh/alice" },
+  { name: "Jack", username: "@jack", body: "I've never seen anything like this before. It's amazing. I love it.", img: "https://ik.imagekit.io/rcfcr7y0e/teamimages.jpg?updatedAt=1756833882794" },
+  { name: "Jill", username: "@jill", body: "I don't know what to say. I'm speechless. This is amazing.", img: "https://ik.imagekit.io/rcfcr7y0e/teamimages.jpg?updatedAt=1756833882794" },
+  { name: "John", username: "@john", body: "I'm at a loss for words. This is amazing. I love it.", img: "https://ik.imagekit.io/rcfcr7y0e/teamimages.jpg?updatedAt=1756833882794" },
+  { name: "Jane", username: "@jane", body: "This is the best thing I've ever seen. I can't believe it.", img: "https://ik.imagekit.io/rcfcr7y0e/teamimages.jpg?updatedAt=1756833882794" },
+  { name: "Bob", username: "@bob", body: "I'm blown away by this. It's incredible.", img: "https://ik.imagekit.io/rcfcr7y0e/teamimages.jpg?updatedAt=1756833882794" },
+  { name: "Alice", username: "@alice", body: "This exceeded all my expectations. Fantastic work!", img: "https://ik.imagekit.io/rcfcr7y0e/teamimages.jpg?updatedAt=1756833882794" },
 ];
 
 // Split reviews into rows with more content

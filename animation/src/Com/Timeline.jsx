@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useRef, useState, useEffect, useMemo, useCallback } from 'react';
 import { motion, useMotionValue, useSpring, useScroll, useTransform } from "framer-motion";
 
 const Timeline = () => {
@@ -8,7 +8,6 @@ const Timeline = () => {
     const mainDivRef = useRef(null);
     const timelineRef = useRef(null);
 
-    const [brightness, setBrightness] = useState(1.3);
     const x = useMotionValue(window.innerWidth / 2);
     const y = useMotionValue(window.innerHeight / 2);
 
@@ -21,41 +20,45 @@ const Timeline = () => {
     const timelineHeight = useTransform(scrollYProgress, [0, 1], [100, 1000]);
 
     // Motion values for smooth cursor follow
-    const mouseX = useMotionValue(window.innerWidth / 2);
-    const mouseY = useMotionValue(window.innerHeight / 2);
     const springX = useSpring(x, { stiffness: 50, damping: 20 });
     const springY = useSpring(y, { stiffness: 50, damping: 20 });
 
-    useEffect(() => {
-        const handleMouseMove = (e) => {
-            if (!mainDivRef.current) return;
+    // Memoized mouse move handler
+    const handleMouseMove = useCallback((e) => {
+        if (!mainDivRef.current) return;
 
-            const rect = mainDivRef.current.getBoundingClientRect();
-            const blobSize = 500;
+        const rect = mainDivRef.current.getBoundingClientRect();
+        const blobSize = 500;
 
-            const clampedX = Math.min(
-                Math.max(e.clientX - rect.left - blobSize / 2, 0),
-                rect.width - blobSize
-            );
-            const clampedY = Math.min(
-                Math.max(e.clientY - rect.top - blobSize / 2, 0),
-                rect.height - blobSize
-            );
+        const clampedX = Math.min(
+            Math.max(e.clientX - rect.left - blobSize / 2, 0),
+            rect.width - blobSize
+        );
+        const clampedY = Math.min(
+            Math.max(e.clientY - rect.top - blobSize / 2, 0),
+            rect.height - blobSize
+        );
 
-            x.set(clampedX);
-            y.set(clampedY);
-        };
-
-        window.addEventListener("mousemove", handleMouseMove);
-        return () => window.removeEventListener("mousemove", handleMouseMove);
+        x.set(clampedX);
+        y.set(clampedY);
     }, [x, y]);
 
-    const horizontalFlicker = setInterval(() => {
-        setIsFlickeringHorizontal(false);
-        setTimeout(() => setIsFlickeringHorizontal(true), 60);
-        setTimeout(() => setIsFlickeringHorizontal(false), 120);
-        setTimeout(() => setIsFlickeringHorizontal(true), 200);
-    }, 1800);
+    useEffect(() => {
+        window.addEventListener("mousemove", handleMouseMove);
+        return () => window.removeEventListener("mousemove", handleMouseMove);
+    }, [handleMouseMove]);
+
+    // Optimized flicker effect with cleanup
+    useEffect(() => {
+        const horizontalFlicker = setInterval(() => {
+            setIsFlickeringHorizontal(false);
+            setTimeout(() => setIsFlickeringHorizontal(true), 60);
+            setTimeout(() => setIsFlickeringHorizontal(false), 120);
+            setTimeout(() => setIsFlickeringHorizontal(true), 200);
+        }, 1800);
+
+        return () => clearInterval(horizontalFlicker);
+    }, []);
 
     const timelineData = [
         { time: "7:30 AM", event: "Team Registration" },
@@ -68,23 +71,23 @@ const Timeline = () => {
         { time: "11:30 AM", event: "Progress Check" },
     ];
 
-    // Optimized star generation with fixed positions
-    const generateStars = () => {
-        const stars = [];
-        const gridCols = 10;
-        const gridRows = 8;
+    // Memoized star generation with reduced count
+    const stars = useMemo(() => {
+        const starsArray = [];
+        const gridCols = 8; // Reduced from 10
+        const gridRows = 6; // Reduced from 8
         
         for (let row = 0; row < gridRows; row++) {
             for (let col = 0; col < gridCols; col++) {
                 // Only create stars in certain grid positions to reduce total count
-                if ((row + col) % 3 === 0) {
+                if ((row + col) % 4 === 0) { // Changed from 3 to 4 to reduce stars further
                     const top = (row / (gridRows - 1)) * 100;
                     const left = (col / (gridCols - 1)) * 100;
                     const sizeVariant = (row + col) % 3;
                     const size = sizeVariant === 0 ? 2 : sizeVariant === 1 ? 1.5 : 1;
                     const animationDelay = (row * gridCols + col) % 4;
                     
-                    stars.push({
+                    starsArray.push({
                         id: row * gridCols + col,
                         top,
                         left,
@@ -95,10 +98,21 @@ const Timeline = () => {
                 }
             }
         }
-        return stars;
-    };
+        return starsArray;
+    }, []);
 
-    const stars = generateStars();
+    // Memoized styles
+    const blobStyle = useMemo(() => ({
+        x: springX, 
+        y: springY,
+        background: "radial-gradient(circle at 30% 30%, rgba(59, 130, 246, 0.8), rgba(29, 78, 216, 0.6), rgba(30, 64, 175, 0.4))"
+    }), [springX, springY]);
+
+    const timelineStyle = useMemo(() => ({
+        height: timelineHeight,
+        background: "linear-gradient(to bottom, #3b82f6, #1d4ed8, #1e40af)",
+        boxShadow: "0 0 20px 4px rgba(59, 130, 246, 0.6), 0 0 40px 8px rgba(29, 78, 216, 0.4)"
+    }), [timelineHeight]);
 
     return (
         <>
@@ -123,8 +137,8 @@ const Timeline = () => {
                 }
 
                 @keyframes glow-pulse {
-                    0%, 100% { box-shadow: 0 0 20px 5px rgba(236, 72, 153, 0.4), 0 0 40px 10px rgba(59, 130, 246, 0.3); }
-                    50% { box-shadow: 0 0 30px 8px rgba(236, 72, 153, 0.6), 0 0 60px 15px rgba(59, 130, 246, 0.5); }
+                    0%, 100% { box-shadow: 0 0 20px 5px rgba(59, 130, 246, 0.4), 0 0 40px 10px rgba(29, 78, 216, 0.3); }
+                    50% { box-shadow: 0 0 30px 8px rgba(59, 130, 246, 0.6), 0 0 60px 15px rgba(29, 78, 216, 0.5); }
                 }
 
                 .timeline-dot {
@@ -145,7 +159,7 @@ const Timeline = () => {
                 }
 
                 .title-text {
-                    background: linear-gradient(45deg, #ec4899, #3b82f6, #8b5cf6, #06b6d4);
+                    background: linear-gradient(45deg, #3b82f6, #1d4ed8, #1e40af, #2563eb);
                     background-size: 400% 400%;
                     -webkit-background-clip: text;
                     background-clip: text;
@@ -159,7 +173,7 @@ const Timeline = () => {
                 }
 
                 .time-badge {
-                    background: linear-gradient(90deg, rgba(236, 72, 153, 0.8), rgba(59, 130, 246, 0.8));
+                    background: linear-gradient(90deg, rgba(59, 130, 246, 0.8), rgba(29, 78, 216, 0.8));
                     border: 1px solid rgba(255, 255, 255, 0.3);
                     backdrop-filter: blur(5px);
                 }
@@ -170,7 +184,7 @@ const Timeline = () => {
                 data-scroll 
                 data-scroll-speed="-.8"
                 ref={mainDivRef} 
-                className='relative -z-10 bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 pt-64 pb-64 overflow-hidden'
+                className='relative -z-10 bg-gradient-to-br from-slate-900 via-blue-900 to-black pt-64 pb-64 overflow-hidden'
             >
                 {/* Optimized Stars Background */}
                 <div className="absolute inset-0 z-[-2] overflow-hidden">
@@ -194,11 +208,7 @@ const Timeline = () => {
                 {window.innerWidth > 770 && (
                     <motion.div
                         className="absolute w-[500px] h-[500px] opacity-30 rounded-full filter blur-[60px] z-0 mix-blend-screen"
-                        style={{ 
-                            x: springX, 
-                            y: springY,
-                            background: "radial-gradient(circle at 30% 30%, rgba(236, 72, 153, 0.8), rgba(59, 130, 246, 0.6), rgba(139, 92, 246, 0.4))"
-                        }}
+                        style={blobStyle}
                         animate={{
                             borderRadius: [
                                 "90% 40% 30% 70% / 50% 60% 40% 50%",
@@ -222,13 +232,13 @@ const Timeline = () => {
 
                 {/* Enhanced Horizontal Glowing Line */}
                 <div
-                    className={`absolute z-40 top-0 h-[2px] w-full bg-gradient-to-r from-pink-500 via-blue-500 to-purple-500
+                    className={`absolute z-40 top-0 h-[2px] w-full bg-gradient-to-r from-blue-500 via-blue-400 to-blue-600
                         ${isFlickeringHorizontal ? 'opacity-90' : 'opacity-20'}
                         transition-opacity duration-100
-                        shadow-[0_0_20px_8px_rgba(236,72,153,0.8),0_0_40px_15px_rgba(59,130,246,0.6)]
+                        shadow-[0_0_20px_8px_rgba(59,130,246,0.8),0_0_40px_15px_rgba(29,78,216,0.6)]
                         animate-pulse-slow`}
                 >
-                    <div className="absolute inset-0 h-full w-full bg-gradient-to-r from-pink-300 via-blue-300 to-purple-300 blur-sm opacity-60" />
+                    <div className="absolute inset-0 h-full w-full bg-gradient-to-r from-blue-300 via-blue-200 to-blue-400 blur-sm opacity-60" />
                 </div>
 
                 {/* Enhanced Title */}
@@ -236,7 +246,7 @@ const Timeline = () => {
                     <h1 className="title-text drop-shadow-2xl">
                         T I M E L I N E
                     </h1>
-                    <div className="h-1 w-32 bg-gradient-to-r from-pink-500 to-blue-500 mx-auto mt-4 rounded-full shadow-lg" />
+                    <div className="h-1 w-32 bg-gradient-to-r from-blue-500 to-blue-400 mx-auto mt-4 rounded-full shadow-lg" />
                 </div>
 
                 {/* Enhanced Timeline Container */}
@@ -244,17 +254,13 @@ const Timeline = () => {
                     {/* Animated Vertical Line */}
                     <motion.div 
                         className="relative w-[3px] mx-7 sm:mx-14 md:mx-32 lg:mx-52 my-3 rounded-full"
-                        style={{ 
-                            height: timelineHeight,
-                            background: "linear-gradient(to bottom, #ec4899, #3b82f6, #8b5cf6)",
-                            boxShadow: "0 0 20px 4px rgba(236, 72, 153, 0.6), 0 0 40px 8px rgba(59, 130, 246, 0.4)"
-                        }}
+                        style={timelineStyle}
                     >
                         {/* Timeline Dots */}
                         {timelineData.map((_, i) => (
                             <motion.div
                                 key={i}
-                                className="absolute timeline-dot rounded-full w-[16px] h-[16px] sm:w-[20px] sm:h-[20px] md:w-[24px] md:h-[24px] bg-gradient-to-br from-pink-400 to-blue-500"
+                                className="absolute timeline-dot rounded-full w-[16px] h-[16px] sm:w-[20px] sm:h-[20px] md:w-[24px] md:h-[24px] bg-gradient-to-br from-blue-400 to-blue-600"
                                 style={{
                                     top: `${difference * i}px`,
                                     left: window.innerWidth < 640 ? "-7px" : window.innerWidth < 1024 ? "-9px" : "-11px",
@@ -328,7 +334,7 @@ const Timeline = () => {
                                         {item.icon}
                                     </span>
                                     <div className="flex-1 min-w-0">
-                                        <div className="font-bold text-sm sm:text-base md:text-lg lg:text-xl bg-gradient-to-r from-pink-300 to-blue-300 bg-clip-text text-transparent leading-tight">
+                                        <div className="font-bold text-sm sm:text-base md:text-lg lg:text-xl bg-gradient-to-r from-blue-300 to-blue-400 bg-clip-text text-transparent leading-tight">
                                             {item.event}
                                         </div>
                                         <div className="text-xs sm:text-sm text-gray-300 opacity-80 hidden sm:block">
@@ -341,7 +347,7 @@ const Timeline = () => {
                                 </div>
                                 
                                 {/* Responsive Decorative Corner */}
-                                <div className="absolute top-0 right-0 w-4 h-4 sm:w-6 sm:h-6 md:w-8 md:h-8 bg-gradient-to-bl from-pink-500 to-transparent opacity-30 rounded-tr-xl sm:rounded-tr-2xl" />
+                                <div className="absolute top-0 right-0 w-4 h-4 sm:w-6 sm:h-6 md:w-8 md:h-8 bg-gradient-to-bl from-blue-500 to-transparent opacity-30 rounded-tr-xl sm:rounded-tr-2xl" />
                             </motion.div>
                         ))}
                     </div>

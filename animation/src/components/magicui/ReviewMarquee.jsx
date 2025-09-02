@@ -4,6 +4,7 @@ import React from "react";
 import { cn } from "@/lib/utils";
 import { Marquee } from "@/components/magicui/marquee";
 import Marquee3D from "./Marquee3D";
+import profilePho from '../../assets/teams/teamimages.jpg'
 
 // Sample reviews data
 const reviews = [
@@ -11,37 +12,37 @@ const reviews = [
     name: "Jack",
     username: "@jack",
     body: "I've never seen anything like this before. It's amazing. I love it.",
-    img: "https://avatar.vercel.sh/jack",
+    img: "https://ik.imagekit.io/rcfcr7y0e/teamimages.jpg?updatedAt=1756833882794",
   },
   {
     name: "Jill",
     username: "@jill",
     body: "I don't know what to say. I'm speechless. This is amazing.",
-    img: "https://avatar.vercel.sh/jill",
+    img: "https://ik.imagekit.io/rcfcr7y0e/teamimages.jpg?updatedAt=1756833882794",
   },
   {
     name: "John",
     username: "@john",
     body: "I'm at a loss for words. This is amazing. I love it.",
-    img: "https://avatar.vercel.sh/john",
+    img: "https://ik.imagekit.io/rcfcr7y0e/teamimages.jpg?updatedAt=1756833882794",
   },
   {
     name: "Jane",
     username: "@jane",
     body: "I'm at a loss for words. This is amazing. I love it.",
-    img: "https://avatar.vercel.sh/jane",
+    img: "https://ik.imagekit.io/rcfcr7y0e/teamimages.jpg?updatedAt=1756833882794",
   },
   {
     name: "Jenny",
     username: "@jenny",
     body: "I'm at a loss for words. This is amazing. I love it.",
-    img: "https://avatar.vercel.sh/jenny",
+    img: "https://ik.imagekit.io/rcfcr7y0e/teamimages.jpg?updatedAt=1756833882794",
   },
   {
     name: "James",
     username: "@james",
     body: "I'm at a loss for words. This is amazing. I love it.",
-    img: "https://avatar.vercel.sh/james",
+    img: "https://ik.imagekit.io/rcfcr7y0e/teamimages.jpg?updatedAt=1756833882794",
   },
 ];
 

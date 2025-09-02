@@ -8,6 +8,7 @@ import Glimespage from "./Com/Glimespage";
 import About from "./Com/About";
 import Timeline from "./Com/Timeline";
 import Star from "./Com/Star";
+import Teams from "./Com/Teams";
 
 
 
@@ -105,7 +106,7 @@ const App = () => {
     <div className="relative w-full">
    <div ref={aboutRef}>
           <About />
-        </div>
+      </div>
       <div ref={themesRef} className="star-section relative h-[200vh]">
         <div className="sticky top-0 h-screen overflow-hidden">
           <Star />
@@ -121,7 +122,7 @@ const App = () => {
         <Glimespage />
       </div>
       <div ref={teamRef}>
-        {/* Add your Team component here */}
+      <Teams />
       </div>
     </div>
 
