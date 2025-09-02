@@ -35,7 +35,11 @@ const Forntpage = () => {
   }, [mouseX, mouseY]);
 
   return (
-    <div data-scroll data-scroll-speed="-.4" className='h-screen flex flex-col items-center justify-center w-full relative bg-[#0a0a0a] overflow-hidden'>
+
+    
+    <div
+    // data-scroll data-scroll-speed="-.9"
+    className='h-screen flex flex-col items-center justify-center w-full relative bg-[#0a0a0a] overflow-hidden'>
       <div className='absolute w-fit top-4 right-[40px] z-50 font-loadfont'>
         <Timer />
       </div>
