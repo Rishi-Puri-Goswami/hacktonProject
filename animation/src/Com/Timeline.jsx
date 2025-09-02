@@ -58,14 +58,14 @@ const Timeline = () => {
     }, 1800);
 
     const timelineData = [
-        { time: "7:30 AM", event: "Team Registration", icon: "📝" },
-        { time: "8:00 AM", event: "Opening Ceremony", icon: "🎉" },
-        { time: "9:00 AM", event: "Hackathon Begins", icon: "💻" },
-        { time: "9:30 AM", event: "Mentor Sessions", icon: "🧑‍🏫" },
-        { time: "10:00 AM", event: "Coffee Break", icon: "☕" },
-        { time: "10:30 AM", event: "Workshop - AI/ML", icon: "🤖" },
-        { time: "11:00 AM", event: "Networking Session", icon: "🤝" },
-        { time: "11:30 AM", event: "Progress Check", icon: "✅" },
+        { time: "7:30 AM", event: "Team Registration" },
+        { time: "8:00 AM", event: "Opening Ceremony" },
+        { time: "9:00 AM", event: "Hackathon Begins" },
+        { time: "9:30 AM", event: "Mentor Sessions" },
+        { time: "10:00 AM", event: "Coffee Break" },
+        { time: "10:30 AM", event: "Workshop - AI/ML" },
+        { time: "11:00 AM", event: "Networking Session" },
+        { time: "11:30 AM", event: "Progress Check" },
     ];
 
     // Optimized star generation with fixed positions
