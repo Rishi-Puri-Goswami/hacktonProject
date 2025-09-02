@@ -107,9 +107,9 @@ const App = () => {
           <About />
         </div>
       <div ref={themesRef} className="star-section relative h-[200vh]">
-        <div className="sticky top-0 h-screen overflow-hidden">
+        {/* <div className="sticky top-0 h-screen overflow-hidden">
           <Star />
-        </div>
+        </div> */}
       </div>
       <div ref={timelineRef}>
         <Timeline />
