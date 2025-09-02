@@ -9,6 +9,8 @@ import About from "./Com/About";
 import Timeline from "./Com/TimeLine";
 import Star from "./Com/Star";
 
+
+
 const App = () => {
 
   const [naveopen, setnaveopen] = useState(false)
