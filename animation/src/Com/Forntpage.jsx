@@ -78,7 +78,7 @@ const Forntpage = () => {
 
 
     <div
-      // data-scroll data-scroll-speed="-.9"
+      data-scroll data-scroll-speed="-.9"
       className='h-screen flex flex-col items-center justify-center w-full bg-[#0a0a0a] overflow-hidden'>
       {/* <div className='absolute w-[200vw] bg-red-400  z-50 font-loadfont'>
         <div className="text-center mb-16  bg-red-600  w-full  absolute  right-[900px] top-3 ">

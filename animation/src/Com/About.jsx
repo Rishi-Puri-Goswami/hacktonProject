@@ -29,7 +29,8 @@ const About = () => {
 
   return (
     <div
-    // data-scroll data-scroll-speed="3"
+
+    
     className="md:h-[150vh] min-h-screen bg-black w-full flex flex-col z-50 relative overflow-hidden">
       {/* Animated background particles */}
       <div className="absolute inset-0 opacity-30">
