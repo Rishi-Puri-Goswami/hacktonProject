@@ -1,5 +1,5 @@
 import React from 'react'
-import Glimes from './glimes'
+import Glimes from './Glimes'
 import { ReviewMarquee } from '../components/magicui/ReviewMarquee'
 
 const Glimespage = () => {
@@ -10,6 +10,7 @@ const Glimespage = () => {
 
 
 <Glimes />
+
 {/* <ReviewMarque/>.. */}
 
 </div>
