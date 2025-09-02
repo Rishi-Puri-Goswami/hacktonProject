@@ -1,5 +1,3 @@
-"use client";
-
 import React from "react";
 import { cn } from "@/lib/utils";
 import { Marquee } from "@/components/magicui/marquee";
@@ -53,7 +51,7 @@ const ReviewCard = ({ img, name, username, body }) => {
   return (
     <figure
       className={cn(
-        "relative h-30 w-36   ml-3 cursor-pointer overflow-hidden rounded-xl border shadow-md transition-transform duration-300 hover:scale-105",
+        "relative h-30 w-36 ml-3 cursor-pointer overflow-hidden rounded-xl border shadow-md transition-transform duration-300 hover:scale-105",
         "border-gray-950/[.1] bg-gray-100 dark:border-gray-50/[.1] dark:bg-gray-800"
       )}
     >
@@ -65,57 +63,53 @@ const ReviewCard = ({ img, name, username, body }) => {
           alt={name}
         />
       </div>
-
       {/* Bottom section for name and description */}
       <div className="h-1/4 w-full p-3 bg-white dark:bg-gray-900">
         <h3 className="text-base font-semibold text-gray-900 dark:text-gray-100 truncate">
           {name}
         </h3>
-     
       </div>
     </figure>
   );
 };
 
 export function ReviewMarquee() {
-  return (<>
+  // Create conditional scroll props
+  const scrollProps = window.innerWidth > 625 ? {
+    'data-scroll': true,
+    'data-scroll-speed': '-.9'
+  } : {};
 
-  {
-    window.innerWidth <=908 ?
-    <div
-      // data-scroll data-scroll-speed="-.2"
-      data-scroll data-scroll-speed="-.9"
-    
-    className="relative flex    w-full flex-col gap-3  mt-3     items-center justify-center overflow-hidden">
-      <Marquee pauseOnHover className="[--duration:20s] flex    ">
-        {firstRow.map((review) => (
-          <ReviewCard key={review.username} {...review} />
-        ))}
-      </Marquee>
-      <Marquee reverse pauseOnHover className="[--duration:10s]">
-        {secondRow.map((review) => (
-          <ReviewCard key={review.username} {...review} />
-        ))}
-      </Marquee>
-      
-       <Marquee reverse pauseOnHover className="[--duration:20s]">
-        {secondRow.map((review) => (
-          <ReviewCard key={review.username} {...review} />
-        ))}
-      </Marquee>
-      
-        
-      <div className="pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r from-background"></div>
-      <div className="pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-gradient-to-l from-background"></div>
-    </div>: <div
-      data-scroll data-scroll-speed="-.9"
-        
-    >
-      <Marquee3D />
-    </div>
-  }
-  
-    
-        </>
+  return (
+    <>
+      {window.innerWidth <= 908 ? (
+        <div
+          {...scrollProps}
+          className="relative flex w-full flex-col gap-3 mt-3 items-center justify-center overflow-hidden"
+        >
+          <Marquee pauseOnHover className="[--duration:20s] flex">
+            {firstRow.map((review) => (
+              <ReviewCard key={review.username} {...review} />
+            ))}
+          </Marquee>
+          <Marquee reverse pauseOnHover className="[--duration:10s]">
+            {secondRow.map((review) => (
+              <ReviewCard key={review.username} {...review} />
+            ))}
+          </Marquee>
+          <Marquee reverse pauseOnHover className="[--duration:20s]">
+            {secondRow.map((review) => (
+              <ReviewCard key={review.username} {...review} />
+            ))}
+          </Marquee>
+          <div className="pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r from-background"></div>
+          <div className="pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-gradient-to-l from-background"></div>
+        </div>
+      ) : (
+        <div {...scrollProps}>
+          <Marquee3D />
+        </div>
+      )}
+    </>
   );
 }

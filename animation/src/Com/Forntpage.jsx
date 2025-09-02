@@ -18,15 +18,15 @@ const Forntpage = () => {
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
   const targetDate = "2025-09-10T00:00:00"
-
+  
   // Bigger div moves opposite (anti-parallax)
   const bigX = useTransform(mouseX, [0, window.innerWidth], [20, -20]);
   const bigY = useTransform(mouseY, [0, window.innerHeight], [10, -10]);
-
+  
   // Smaller div moves with cursor (normal parallax)
   const smallX = useTransform(mouseX, [0, window.innerWidth], [-15, 15]);
   const smallY = useTransform(mouseY, [0, window.innerHeight], [-8, 8]);
-
+  
   useEffect(() => {
     const handleMouseMove = (e) => {
       mouseX.set(e.clientX);
@@ -35,22 +35,22 @@ const Forntpage = () => {
     window.addEventListener("mousemove", handleMouseMove);
     return () => window.removeEventListener("mousemove", handleMouseMove);
   }, [mouseX, mouseY]);
-
+  
   //---------------------------
   function getTimeLeft(targetDate) {
     const target = new Date(targetDate).getTime();
     const now = Date.now();
     const diff = target - now;
-
+    
     if (diff <= 0) {
       return { days: "00", hours: "00", minutes: "00", seconds: "00" };
     }
-
+    
     const days = Math.floor(diff / (1000 * 60 * 60 * 24));
     const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
     const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
     const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-
+    
     return {
       days: String(days).padStart(2, "0"),
       hours: String(hours).padStart(2, "0"),
@@ -58,47 +58,34 @@ const Forntpage = () => {
       seconds: String(seconds).padStart(2, "0"),
     };
   }
-
+  
+  const [timeLeft, setTimeLeft] = useState(getTimeLeft(targetDate));
+  const rafRef = useRef(null);
+  
   useEffect(() => {
     const tick = () => {
       setTimeLeft(getTimeLeft(targetDate));
       rafRef.current = requestAnimationFrame(tick); // keeps checking ~60fps
     };
-
     tick(); // start immediately
-
     return () => cancelAnimationFrame(rafRef.current);
   }, [targetDate]);
 
-  const [timeLeft, setTimeLeft] = useState(getTimeLeft(targetDate));
-  const rafRef = useRef(null);
-
+  // Create conditional props object
+  const scrollProps = window.innerWidth > 625 ? {
+    'data-scroll': true,
+    'data-scroll-speed': '-.9'
+  } : {};
 
   return (
-
-
     <div
-      data-scroll data-scroll-speed="-.9"
+      {...scrollProps}
       className='h-screen flex flex-col items-center justify-center w-full bg-[#0a0a0a] overflow-hidden'>
-      {/* <div className='absolute w-[200vw] bg-red-400  z-50 font-loadfont'>
-        <div className="text-center mb-16  bg-red-600  w-full  absolute  right-[900px] top-3 ">
-          <div className="flex justify-center items-center w-fit gap-4 mb-16">
-            <div className="text-center  ">
-              <div className="text-gray-300 text-xs mb-2">Days</div>
-              <div className="text-6xl md:text-7xl lg:text-4xl font-bold text-gray-300">
-                {timeLeft.days}
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </div> */}
-
+     
       <div className='absolute md:top-0 lg:top-0 sm:top-[0px] top-14 h-10 lg:text-5xl md:text-5xl sm:text-3xl text-2xl md:bg-yllow-200/20 sm:bg-gren-600/20 lg:bg-rd-400/20 w-full bg-gree-400/30 flex justify-center items-center  z-50 font-loadfont'>
-
         <Timer />
       </div>
-
+      
       <div className="absolute top-4 left-[-9px] md:h-[10vh] sm:h-[6vh] h-[5vh] bg-gren-300 z-50 ml-7">
         <img
           src={logo}
@@ -106,16 +93,14 @@ const Forntpage = () => {
           className="h-full w-full object-contain"
         />
       </div>
-
+      
       <Name />
-
+      
       {/* Background Layer */}
       <div className='absolute h-screen w-full'>
         <img src={image5} className='h-full w-full object-fill object-center opacity-90' alt="" />
       </div>
-
-
-
+      
       {/* Faded 4.0 Text */}
       <div className="absolute top-3 w-[100vw] overflow-hidden inset-0 flex items-center justify-center z-10 pointer-events-none">
         <motion.div
@@ -139,22 +124,22 @@ const Forntpage = () => {
           4.0
         </motion.div>
       </div>
+      
       <img src={image} className='absolute h-screen w-full object-top object-fill z-30 opacity-90' alt="" />
       <img src={image2} className='absolute h-screen w-full object-top z-30 opacity-80' alt="" />
-
+      
       {/* Main Animation Section */}
       <div className="relative w-full h-screen flex items-center -bottom-[200px] justify-center overflow-hidden">
-
         {/* Left Glowing Ball */}
         <div className="absolute md:left-[390px] left-0 -bottom-[275px] transform -translate-x-[65px] z-20">
           <GlowingBall gradientColors="radial-gradient(circle, rgba(255,180,100,0.9) 0%, rgba(255,50,200,0.7) 50%, rgba(0,0,139,0.7) 80%)" />
         </div>
-
+        
         {/* Right Glowing Ball */}
         <div className="absolute md:left-[390px] left-0 -bottom-[275px] transform translate-x-[65px] z-10">
           <GlowingBall gradientColors="radial-gradient(circle, rgba(100,200,255,0.9) 0%, rgba(50,150,255,0.7) 50%, rgba(0,0,139,0.7) 80%)" />
         </div>
-
+        
         {/* Bigger Blue Div */}
         <motion.div
           initial={{ y: 150, scale: 0.8, opacity: 0 }}
@@ -169,8 +154,7 @@ const Forntpage = () => {
           }}
           className="md:h-[66vh] md:w-[65vw] w-[10vw] absolute bottom-0 rounded-t-full z-40 backdrop-blur-lg"
         />
-
-
+        
         {/* Smaller Blue Div */}
         <motion.div
           initial={{ y: 180, scale: 0.8, opacity: 0 }}
@@ -185,7 +169,7 @@ const Forntpage = () => {
           }}
           className="h-[56vh] w-[55vw] absolute bottom-0 rounded-t-full z-40 backdrop-blur-lg"
         />
-
+        
         {/* Shine overlay */}
         <motion.div
           style={{ x: smallX, y: smallY }}
@@ -203,12 +187,12 @@ const Forntpage = () => {
             }}
           />
         </motion.div>
-
+        
         {/* Floating glowing balls above Blue Div */}
         <div className="absolute md:left-[400px] left-0 bottom-[300px] h-[100px] w-[100px] transform -translate-x-[65px] z-40">
           <Rightball gradientColors="radial-gradient(circle, rgba(255,180,100,0.9) 0%, rgba(255,50,200,0.7) 50%, rgba(0,0,139,0.7) 80%)" />
         </div>
-
+        
         {/* Man Image */}
         <motion.div
           initial={{ y: 200, scale: 0.8, opacity: 0 }}
@@ -223,24 +207,16 @@ const Forntpage = () => {
             alt="man"
           />
         </motion.div>
-
+        
         {/* Right-side Glowing Ball */}
         <div className="absolute md:left-[190px] left-[5px] bottom-[300px] h-[100px] w-[100px] transform translate-x-[65px] z-30">
           <GlowingBall gradientColors="radial-gradient(circle, rgba(255,80,80,1) 0%, rgba(200,30,30,0.9) 50%, rgba(120,0,0,0.8) 80%)" />
         </div>
-
-        {/* Random Stars */}
-        {/* <div className="absolute inset-0 -bottom-50 z-40">
-          <StarDemo />
-        </div>
-        <div className="absolute inset-0 z-0 -bottom-50">
-          <StarDemo />
-        </div> */}
+       
       </div>
-
+      
       {/* Hackathon Section */}
       <HackathonSection />
-
     </div>
   )
 }

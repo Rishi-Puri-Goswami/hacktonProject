@@ -119,6 +119,12 @@ const Timeline = () => {
         boxShadow: "0 0 20px 4px rgba(59, 130, 246, 0.6), 0 0 40px 8px rgba(29, 78, 216, 0.4)"
     }), [timelineHeight]);
 
+    // Create conditional scroll props
+    const scrollProps = window.innerWidth > 625 ? {
+        'data-scroll': true,
+        'data-scroll-speed': '-.8'
+    } : {};
+
     return (
         <>
             <style>
@@ -186,8 +192,7 @@ const Timeline = () => {
             </style>
 
             <div 
-                data-scroll 
-                data-scroll-speed="-.8"
+                {...scrollProps}
                 ref={mainDivRef} 
                 className='relative -z-10 bg-gradient-to-br from-slate-900 via-blue-900 to-black pt-64 pb-64 overflow-hidden'
             >
