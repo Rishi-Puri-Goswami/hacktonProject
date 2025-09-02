@@ -35,7 +35,7 @@ const Forntpage = () => {
   }, [mouseX, mouseY]);
 
   return (
-    <div data-scroll data-scroll-speed="-.8" className='h-screen flex flex-col items-center justify-center w-full relative bg-[#0a0a0a] overflow-hidden'>
+    <div data-scroll data-scroll-speed="-.4" className='h-screen flex flex-col items-center justify-center w-full relative bg-[#0a0a0a] overflow-hidden'>
       <div className='absolute w-fit top-4 right-[40px] z-50 font-loadfont'>
         <Timer />
       </div>
@@ -81,10 +81,9 @@ const Forntpage = () => {
         >
           4.0
         </motion.div>
-      </div>
-
-      <img src={image} className='absolute h-screen w-full object-top object-fill z-30 opacity-90' alt="" />
-      <img src={image2} className='absolute h-screen w-full object-top z-30 opacity-80' alt="" />
+      </div> 
+       <img src={image} className='absolute h-screen w-full object-top object-fill z-30 opacity-90' alt="" />
+      <img src={image2} className='absolute h-screen w-full object-top z-30 opacity-80' alt="" /> 
 
       {/* Main Animation Section */}
       <div className="relative w-full h-screen flex items-center -bottom-[200px] justify-center overflow-hidden">
