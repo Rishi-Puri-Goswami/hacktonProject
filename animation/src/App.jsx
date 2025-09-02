@@ -123,7 +123,6 @@ const App = () => {
       <div ref={teamRef}>
         {/* Add your Team component here */}
       </div>
-
     </div>
 
 

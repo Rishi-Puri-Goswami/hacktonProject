@@ -70,7 +70,10 @@ const Star = () => {
     }
 
     return (
-        <div className='bg-black ' style={{ width: '100vw', height: '100vh', opacity: opa / 100, position: 'relative' }}>
+        <div 
+   
+        //  data-scroll data-scroll-speed="1"
+        className='bg-black ' style={{ width: '100vw', height: '100vh', opacity: opa / 100, position: 'relative' }}>
             <Canvas
                 camera={{ position: [0, 0, 1000] }} // Initial Z matches zSpring
                 gl={{

@@ -29,7 +29,7 @@ const About = () => {
 
   return (
     <div
-    data-scroll data-scroll-speed="1"
+    // data-scroll data-scroll-speed="3"
     className="h-[150vh] bg-black w-full flex flex-col z-50 relative">
       <div className="border-b-2 flex whitespace-nowrap overflow-hidden">
         <EventHeader />

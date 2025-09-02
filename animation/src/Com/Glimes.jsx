@@ -5,7 +5,7 @@ import { ReviewMarquee } from "../components/magicui/ReviewMarquee";
 const Glimes = () => {
   return (
     <div 
-    data-scroll data-scroll-speed="-.3"
+    // data-scroll data-scroll-speed="-.3"
     
     className="h-screen w-full      items-center justify-end   flex ">
    <ReviewMarquee />
