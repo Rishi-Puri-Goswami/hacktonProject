@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SVG Beam Sweep Effect</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: #0f0f0f;
+    }
+
+    svg {
+      width: 70%;
+      height: auto;
+    }
+
+    .beam-line {
+      stroke: url(#beamGradient);
+      stroke-width: 3;
+      fill: none;
+      stroke-dasharray: 500;   /* total path length */
+      stroke-dashoffset: 500;  /* hide initially */
+      animation: beamSweep 3s linear infinite;
+    }
+
+    @keyframes beamSweep {
+      0% {
+        stroke-dashoffset: 500; /* hidden, start off right */
+      }
+      40% {
+        stroke-dashoffset: 0;   /* beam fully visible sweeping */
+      }
+      60% {
+        stroke-dashoffset: -500; /* beam moves off left */
+      }
+      100% {
+        stroke-dashoffset: -500; /* pause before restart */
+      }
+    }
+  </style>
+</head>
+<body>
+    <div style="width: 200px;">
+
+        <svg viewBox="0 0 236 68" xmlns="http://www.w3.org/2000/svg">
+            <path class="beam-line"
+            d="M0.5 0.5H89C90.6569 0.5 92 1.84315 92 3.5V29C92 30.6569 93.3431 32 95 32H148.5C150.157 32 151.5 33.3431 151.5 35V64C151.5 65.6569 152.843 67 154.5 67H235.5" />
+            
+            <defs>
+                <linearGradient id="beamGradient" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="236" y2="0">
+                    <stop stop-color="#2EB9DF" stop-opacity="0"></stop>
+                    <stop offset="0.25" stop-color="#2EB9DF" stop-opacity="1"></stop>
+                    <stop offset="0.75" stop-color="#9E00FF" stop-opacity="1"></stop>
+                    <stop offset="1" stop-color="#9E00FF" stop-opacity="0"></stop>
+                </linearGradient>
+            </defs>
+        </svg>
+    </div>
+
+
+</body>
+</html>

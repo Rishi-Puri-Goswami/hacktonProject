@@ -1,0 +1,9 @@
+/* Import custom fonts - must come before other rules for PostCSS @import */
+@import "../assets/fonts/fonts.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
