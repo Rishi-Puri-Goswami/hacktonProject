@@ -11,13 +11,18 @@ const Timeline = () => {
     const x = useMotionValue(window.innerWidth / 2);
     const y = useMotionValue(window.innerHeight / 2);
 
-    // Scroll-based timeline height
+    // Scroll-based timeline height (disabled on mobile)
     const { scrollYProgress } = useScroll({
         target: timelineRef,
         offset: ["start center", "end center"]
     });
     
-    const timelineHeight = useTransform(scrollYProgress, [0, 1], [100, 1000]);
+    const isMobile = window.innerWidth < 1024; // Define mobile breakpoint
+    const timelineHeight = useTransform(
+        scrollYProgress, 
+        [0, 1], 
+        isMobile ? [1000, 1000] : [100, 1000] // Fixed height on mobile, animated on desktop
+    );
 
     // Motion values for smooth cursor follow
     const springX = useSpring(x, { stiffness: 50, damping: 20 });

@@ -82,7 +82,11 @@ export function ReviewMarquee() {
 
   {
     window.innerWidth <=908 ?
-    <div className="relative flex    w-full flex-col gap-3  mt-3     items-center justify-center overflow-hidden">
+    <div
+      // data-scroll data-scroll-speed="-.2"
+      data-scroll data-scroll-speed="-.9"
+    
+    className="relative flex    w-full flex-col gap-3  mt-3     items-center justify-center overflow-hidden">
       <Marquee pauseOnHover className="[--duration:20s] flex    ">
         {firstRow.map((review) => (
           <ReviewCard key={review.username} {...review} />
@@ -103,7 +107,10 @@ export function ReviewMarquee() {
         
       <div className="pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r from-background"></div>
       <div className="pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-gradient-to-l from-background"></div>
-    </div>: <div>
+    </div>: <div
+      data-scroll data-scroll-speed="-.9"
+        
+    >
       <Marquee3D />
     </div>
   }
