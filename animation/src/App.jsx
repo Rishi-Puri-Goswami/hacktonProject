@@ -111,9 +111,9 @@ const App = () => {
           <Star />
         </div>
       </div>
-      <div ref={timelineRef}>
+      {/* <div ref={timelineRef}>
         <Timeline />
-      </div>
+      </div> */}
       <div ref={prizesRef}>
         <PrizesRewardsPage />
       </div>
