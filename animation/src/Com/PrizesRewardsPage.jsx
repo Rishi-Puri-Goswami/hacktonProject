@@ -181,7 +181,7 @@ const TiltCard = ({ amount = "7,00,000", currency = "₹", size = "large", title
 
 const PrizesRewardsPage = () => {
   return (
-    <div className="z-50 min-h-screen pb-10 w-full relative overflow-hidden">
+    <div className="z-50 min-h-screen pb-10  w-full relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-slate-900 to-black" />
 
       {/* Cards */}
