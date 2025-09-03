@@ -96,14 +96,14 @@ const Timeline = () => {
     }, []);
 
     const timelineData = [
-        { time: "8:00 AM", event: "Team Registration" },
-        { time: "10:00 AM", event: "Opening Ceremony" },
-        { time: "11:00 AM", event: "Hackathon Begins" },
-        { time: "2:00 PM", event: "Mentor Sessions", },
-        { time: "04:00 PM", event: "Coffee Break" },
-        { time: "05:00 PM", event: "Workshop" },
-        { time: "09:00 PM", event: "Networking Session" },
-        { time: "11:00 PM", event: "Progress Check" },
+        { time: "8:00 AM", event: "Team Registration", },
+        { time: "10:00 AM", event: "Opening Ceremony", },
+        { time: "11:00 AM", event: "Hackathon Begins", },
+        { time: "2:00 PM", event: "Mentor Sessions",  },
+        { time: "04:00 PM", event: "Coffee Break", },
+        { time: "05:00 PM", event: "Workshop", },
+        { time: "09:00 PM", event: "Networking Session", },
+        { time: "11:00 PM", event: "Progress Check", },
     ];
 
     // Memoized and reduced star generation
