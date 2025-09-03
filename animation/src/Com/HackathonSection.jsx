@@ -36,7 +36,7 @@ const HackathonSection = () => {
           x: leftXViewport, // Using viewport-based transform
           opacity: opacityViewport,
         }}
-        className="flex h-full w-[50vw] sm:w-[35vw] md:w-[20vw] mt-4 sm:mt-2 p-2 sm:p-4"
+        className="flex h-full ml-1 w-[50vw] sm:w-[35vw] md:w-[20vw] mt-4 sm:mt-2 p-2 sm:p-4"
       >
         <motion.div
           className="flex items-center gap-2 sm:gap-3 md:gap-4 ml-2 sm:ml-6 md:ml-[95px]"
@@ -82,7 +82,7 @@ const HackathonSection = () => {
           {/* Text Section */}
           <div className="flex flex-col border-l-2 border-red-600 pl-2 sm:pl-3">
             <div
-              className="text-[12px]   tracking-tighter    leading-4   sm:text-[16px] md:text-[14px]   sm:leading-6 md:leading-6
+              className="text-[12px]   tracking-tighter    leading-4   sm:text-[16px] md:text-[14px]    sm:leading-6 md:leading-6
                        p-1 sm:p-2 md:p-2 text-white font-loadfont font-semibold
                        w-[100px] sm:w-[180px] md:w-[140px]"
             >
