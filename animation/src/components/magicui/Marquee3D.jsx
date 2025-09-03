@@ -1,201 +1,177 @@
-import React from 'react';
+import React, { memo, useMemo } from 'react';
 
+// Import your images (keeping the same imports)
+import image5 from "../../assets/teams/DSC05945.jpg"
+import image6 from "../../assets/teams/DSC05950.jpg"
+import image7 from "../../assets/teams/DSC05953.jpg"
+import image8 from "../../assets/teams/DSC05955.jpg"
+import image9 from "../../assets/teams/DSC05976.jpg"
+import image10 from "../../assets/teams/DSC05991.jpg"
+import image11 from "../../assets/teams/DSC05996.jpg"
+import image12 from "../../assets/teams/DSC06000.jpg"
+import image14 from "../../assets/teams/DSC06032.jpg"
+import image15 from "../../assets/teams/DSC05951.jpg"
+import image16 from "../../assets/teams/DSC05954.jpg"
+import image17 from "../../assets/teams/DSC05974.jpg"
+import image18 from "../../assets/teams/DSC05971.jpg"
+import image19 from "../../assets/teams/DSC05968.jpg"
+import image20 from "../../assets/teams/DSC06061.jpg"
+import image21 from "../../assets/teams/DSC06058.jpg"
+import image22 from "../../assets/teams/DSC06052.jpg"
+import image23 from "../../assets/teams/DSC06060.jpg"
+import image24 from "../../assets/teams/DSC06078.jpg"
+import image25 from "../../assets/teams/DSC06079.jpg"
+import image26 from "../../assets/teams/DSC06101.jpg"
 
-// import image from "../../assets/teams/DSC05976.jpg"
-
-
-import image5 from "../../assets/teams/DSC05945.jpg"  // converted from .HEIC
-import image6 from "../../assets/teams/DSC05950.jpg"  // converted from .HEIC
-import image7 from "../../assets/teams/DSC05953.jpg"  // converted from .HEIC
-import image8 from "../../assets/teams/DSC05955.jpg"  // converted from .HEIC
-import image9 from "../../assets/teams/DSC05976.jpg"  // converted from .HEIC
-import image10 from "../../assets/teams/DSC05991.jpg"  // converted from .HEIC
-import image11 from "../../assets/teams/DSC05996.jpg"  // converted from .HEIC
-import image12 from "../../assets/teams/DSC06000.jpg"  // converted from .HEIC
-import image14 from "../../assets/teams/DSC06032.jpg"  // converted from .HEIC
-import image15 from "../../assets/teams/DSC05951.jpg"  // converted from .HEIC
-import image16 from "../../assets/teams/DSC05954.jpg"  // converted from .HEIC
-import image17 from "../../assets/teams/DSC05974.jpg"  // converted from .HEIC
-import image18 from "../../assets/teams/DSC05971.jpg"  // converted from .HEIC
-import image19 from "../../assets/teams/DSC05968.jpg"  // converted from .HEIC
-import image20 from "../../assets/teams/DSC06061.jpg"  // converted from .HEIC
-import image21 from "../../assets/teams/DSC06058.jpg"  // converted from .HEIC
-import image22 from "../../assets/teams/DSC06052.jpg"  // converted from .HEIC
-import image23 from "../../assets/teams/DSC06060.jpg"  // converted from .HEIC
-import image24 from "../../assets/teams/DSC06078.jpg"  // converted from .HEIC
-import image25 from "../../assets/teams/DSC06079.jpg"  // converted from .HEIC
-import image26 from "../../assets/teams/DSC06101.jpg"  // converted from .HEIC
-
-
-
-const cn = (...classes) => classes.filter(Boolean).join(' ');
-
-// Function to repeat children multiple times
-const repeatChildren = (children, times = 3) => {
-  let repeated = [];
-  for (let i = 0; i < times; i++) {
-    repeated = repeated.concat(children);
-  }
-  return repeated;
-};
-
-// Marquee component
-const Marquee = ({ 
-  children, 
-  pauseOnHover = false, 
-  vertical = false, 
-  reverse = false, 
-  className = '',
-  repeat = 6, // Increased default repeat for seamless effect
-  duration = 20, // duration in seconds for animation
-  ...props 
-}) => {
-  const marqueeClass = cn(
-    'flex',
-    vertical ? 'flex-col animate-marquee-vertical' : 'animate-marquee',
-    reverse && (vertical ? 'animate-marquee-vertical-reverse' : 'animate-marquee-reverse'),
-    pauseOnHover && 'hover:[animation-play-state:paused]',
-    className
-  );
-
-  return (
-    <div className={cn('overflow-hidden', vertical ? 'h-full' : 'w-full')} {...props}>
-      <div className={marqueeClass} style={{ '--duration': `${duration}s` }}>
-        {repeatChildren(children, repeat)}
-      </div>
-    </div>
-  );
-};
-
-// Sample reviews data - FIXED: Removed curly braces around image variables
-const reviews = [
- 
-  {   img: image5 },
-  {  img: image6 },
-  { img: image7},
-  {  img: image8 },
-  { img : image9},
-  {  img: image10 },
-  {  img: image11 },
-  {   img: image12 },
-  {   img: image14 },
-  {   img: image15 },
-  {   img: image16 },
-  {   img: image17 },
-  {   img: image18 },
-  {   img: image19 },
-  {   img: image20 },
-  {   img: image21 },
-  {   img: image22 },
-  {   img: image23 },
-  {   img: image24 },
-  {   img: image25 },
-  {   img: image26 },
-
-
- 
-];
-
-// Split reviews into rows with more content
-const firstRow = reviews.slice(0, 4);
-const secondRow = reviews.slice(4, 8);
-const thirdRow = reviews.slice(8, 12);
-
-// Hackathon Card
-const HackathonCard = ({ img, name, description }) => {
+// Optimized Hackathon Card with memo to prevent unnecessary re-renders
+const HackathonCard = memo(({ img, index }) => {
   return (
     <div className="relative w-64 cursor-pointer overflow-hidden rounded-lg bg-purple-800 shadow-md hover:shadow-lg transition-shadow duration-300 mb-4 flex-shrink-0">
       <div className="aspect-video w-full overflow-hidden">
         <img 
           className="w-full h-full object-cover" 
-          alt={name} 
+          alt={`Team photo ${index}`}
           src={img}
+          loading="lazy" // Lazy loading for better performance
+          decoding="async" // Async decoding
           onError={(e) => {
-            console.error(`Failed to load image: ${img}`);
-            e.target.src = 'https://via.placeholder.com/300x200?text=Image+Not+Found';
+            e.target.style.display = 'none';
           }}
         />
       </div>
-      
     </div>
   );
-};
+});
 
-// Marquee3D component
-export default function Marquee3D() {
+HackathonCard.displayName = 'HackathonCard';
+
+// Optimized Marquee Column component
+const MarqueeColumn = memo(({ images, reverse = false, duration = 30 }) => {
+  // Duplicate images for seamless loop - using fewer repetitions
+  const duplicatedImages = useMemo(() => {
+    const repeated = [];
+    // Reduced from 8 to 4 repetitions to reduce DOM load
+    for (let i = 0; i < 4; i++) {
+      images.forEach((img, index) => {
+        repeated.push({
+          img,
+          key: `${i}-${index}`,
+          index: index
+        });
+      });
+    }
+    return repeated;
+  }, [images]);
+
   return (
-    <div className="relative flex h-[100vh] -mr-16 w-[72vw] flex-row items-center justify-center gap-4 overflow-hidden">
+    <div className="flex flex-col h-full overflow-hidden">
+      <div 
+        className={`flex flex-col gap-4 ${reverse ? 'animate-marquee-up' : 'animate-marquee-down'}`}
+        style={{ 
+          '--duration': `${duration}s`,
+          animationTimingFunction: 'linear',
+          animationIterationCount: 'infinite',
+          willChange: 'transform' // Optimize for animations
+        }}
+      >
+        {duplicatedImages.map(({ img, key, index }) => (
+          <HackathonCard 
+            key={key}
+            img={img}
+            index={index}
+          />
+        ))}
+      </div>
+    </div>
+  );
+});
+
+MarqueeColumn.displayName = 'MarqueeColumn';
+
+// Main component
+export default function Marquee3D() {
+  // Memoize the image arrays to prevent recreation on every render
+  const imageColumns = useMemo(() => {
+    const reviews = [
+      image5, image6, image7, image8, image9, image10, image11,
+      image12, image14, image15, image16, image17, image18, image19,
+      image20, image21, image22, image23, image24, image25, image26
+    ];
+
+    return [
+      reviews.slice(0, 7),   // First column - 7 images
+      reviews.slice(7, 14),  // Second column - 7 images  
+      reviews.slice(14, 21)  // Third column - 7 images
+    ];
+  }, []);
+
+  return (
+    <>
+      {/* Optimized CSS with GPU acceleration */}
       <style jsx>{`
-        @keyframes marquee-vertical {
+        @keyframes marquee-down {
           0% { 
-            transform: translateY(0); 
+            transform: translate3d(0, 0, 0); 
           }
           100% { 
-            transform: translateY(-50%); 
+            transform: translate3d(0, -50%, 0); 
           }
         }
 
-        @keyframes marquee-vertical-reverse {
+        @keyframes marquee-up {
           0% { 
-            transform: translateY(-50%); 
+            transform: translate3d(0, -50%, 0); 
           }
           100% { 
-            transform: translateY(0); 
+            transform: translate3d(0, 0, 0); 
           }
         }
 
-        .animate-marquee-vertical {
-          animation: marquee-vertical var(--duration, 20s) linear infinite;
+        .animate-marquee-down {
+          animation: marquee-down var(--duration, 20s) linear infinite;
         }
 
-        .animate-marquee-vertical-reverse {
-          animation: marquee-vertical-reverse var(--duration, 20s) linear infinite;
+        .animate-marquee-up {
+          animation: marquee-up var(--duration, 20s) linear infinite;
         }
 
-        [style*="perspective"] {
-          perspective: 300px;
+        /* Enable hardware acceleration and optimize performance */
+        .marquee-container {
+          transform-style: preserve-3d;
+          backface-visibility: hidden;
+          will-change: transform;
+        }
+
+        .marquee-container > * {
+          transform-style: preserve-3d;
+          backface-visibility: hidden;
         }
       `}</style>
 
-      <div
-        className="flex pl-64 flex-row items-center gap-4"
-        style={{
-          transform: "translateX(-100px) translateY(0px) translateZ(-100px) rotateX(20deg) rotateY(-10deg) rotateZ(20deg)",
-        }}
-      >
-        <Marquee pauseOnHover vertical repeat={8} duration={30} className="h-full">
-          {firstRow.map((project, index) => (
-            <HackathonCard 
-              key={`first-${project.name}-${index}`} 
-              img={project.img}
-              name={project.name}
-              description={project.body}
-            />
-          ))}
-        </Marquee>
-        
-        <Marquee reverse pauseOnHover vertical repeat={8} duration={30} className="h-full">
-          {secondRow.map((project, index) => (
-            <HackathonCard 
-              key={`second-${project.name}-${index}`} 
-              img={project.img}
-              name={project.name}
-              description={project.body}
-            />
-          ))}
-        </Marquee>
-        
-        <Marquee pauseOnHover vertical repeat={8} duration={30} className="h-full">
-          {thirdRow.map((project, index) => (
-            <HackathonCard 
-              key={`third-${project.name}-${index}`} 
-              img={project.img}
-              name={project.name}
-              description={project.body}
-            />
-          ))}
-        </Marquee>
+      <div className="relative flex h-[100vh] -mr-16 w-[72vw] flex-row items-center justify-center gap-4 overflow-hidden">
+        <div
+          className="flex pl-64 flex-row items-center gap-6 marquee-container"
+          style={{
+            transform: "translate3d(-100px, 0px, -100px) rotateX(20deg) rotateY(-10deg) rotateZ(20deg)",
+          }}
+        >
+          <MarqueeColumn 
+            images={imageColumns[0]} 
+            duration={35}
+          />
+          
+          <MarqueeColumn 
+            images={imageColumns[1]} 
+            reverse={true}
+            duration={40} // Slightly different duration for visual variety
+          />
+          
+          <MarqueeColumn 
+            images={imageColumns[2]} 
+            duration={37}
+          />
+        </div>
       </div>
-    </div>
+    </>
   );
 }
