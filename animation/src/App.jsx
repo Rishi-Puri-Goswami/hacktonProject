@@ -53,6 +53,8 @@ const App = () => {
     { name: "Team", ref: teamRef },
   ];
 
+
+  
   const scrollToRef = (ref) => {
     if (ref.current) {
       const top = ref.current.getBoundingClientRect().top + window.scrollY;

@@ -98,7 +98,7 @@ const Forntpage = () => {
       
       {/* Background Layer */}
       <div className='absolute h-screen w-full'>
-        <img src={image5} className='h-full w-full object-fill object-center opacity-90' alt="" />
+        <img src="https://ik.imagekit.io/rcfcr7y0e/backgroundO.png?updatedAt=1756929166532" className='h-full w-full object-fill object-center opacity-90' alt="" />
       </div>
       
       {/* Faded 4.0 Text */}
@@ -202,7 +202,7 @@ const Forntpage = () => {
           className="md:h-[77vh] md:w-[30vw] z-50 absolute bottom-[180px]"
         >
           <img
-            src={image3}
+            src="https://ik.imagekit.io/rcfcr7y0e/image3.png?updatedAt=1756931161669"
             className="h-full w-full object-cover object-center"
             alt="man"
           />
