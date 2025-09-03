@@ -24,7 +24,7 @@ const HackathonSection = () => {
   return (
     <div
       ref={sectionRef}
-      className="absolute top-[200px] flex items-center justify-between w-full z-50 overflow-hidden
+      className="absolute   top-[200px]   flex items-center justify-between w-full z-50 overflow-hidden
                  h-[30vh] sm:h-[65vh] md:h-[50vh] px-4 sm:px-6 md:px-10"
     >
       {/* LEFT SIDE */}
@@ -64,10 +64,10 @@ const HackathonSection = () => {
           x: rightXViewport, // Using viewport-based transform
           opacity: opacityViewport,
         }}
-        className="flex h-full w-[60vw] sm:w-[40vw] md:w-[25vw] pt-2 sm:pt-3 md:pt-4 pr-4 sm:pr-8 md:mr-[60px]"
+        className="flex h-full w-[60vw] sm:w-[40vw]  md:w-[25vw] pt-2 sm:pt-3 md:pt-4 pr-4 sm:pr-8 md:mr-[60px]"
       >
         <motion.div
-          className="flex items-center gap-2 sm:gap-3 md:gap-4"
+          className="flex items-center gap- sm:gap-3 md:gap-4"
           animate={{ scale: [1, 1.03, 1], y: [0, 5, 0] }}
           transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
         >

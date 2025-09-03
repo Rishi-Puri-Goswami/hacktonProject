@@ -96,7 +96,7 @@ const Star = () => {
             </Canvas>
 
             <motion.div
-                className="absolute top-1 flex justify-center font-loadfont w-full text-white text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-loadFont whitespace-nowrap"
+                className="absolute top-1 flex justify-center font-loadfont  font-semibold  w-full text-white text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-loadFont whitespace-nowrap"
                 style={{ y: textSpring }}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: showText ? 1 : 0 }}

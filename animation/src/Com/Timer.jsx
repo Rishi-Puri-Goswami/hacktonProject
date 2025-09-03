@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 
-const CountdownTimer = ({ targetDate = "2025-09-10T00:00:00" }) => {
+const CountdownTimer = ({ targetDate = "2025-09-30T14:00:00" }) => {
   const [timeLeft, setTimeLeft] = useState(getTimeLeft(targetDate));
   const rafRef = useRef(null);
 
@@ -29,17 +29,15 @@ const CountdownTimer = ({ targetDate = "2025-09-10T00:00:00" }) => {
   useEffect(() => {
     const tick = () => {
       setTimeLeft(getTimeLeft(targetDate));
-      rafRef.current = requestAnimationFrame(tick); // keeps checking ~60fps
+      rafRef.current = requestAnimationFrame(tick);
     };
-
     tick(); // start immediately
-
     return () => cancelAnimationFrame(rafRef.current);
   }, [targetDate]);
 
   return (
-    <div className="text-center mb-16  bg-red600  w-fit  absolute top-3 ">
-      <div className="flex justify-center items-center sm:gap-2 sm:bg-orage-400 bg-red-00 md:bg-ble-400 mb-16">
+    <div className="text-center mb-8  w-fit absolute top-3">
+      <div className="flex justify-center items-center gap-1 sm:gap-2 mb-8">
         <TimeBox label="Days" value={timeLeft.days} />
         <Colon />
         <TimeBox label="Hours" value={timeLeft.hours} />
@@ -53,16 +51,16 @@ const CountdownTimer = ({ targetDate = "2025-09-10T00:00:00" }) => {
 };
 
 const TimeBox = ({ label, value }) => (
-  <div className="text-center bg-prple-400 px-2">
-    <div className="text-gray-300 text-xs mb-2">{label}</div>
-    <div className="  font-bold text-gray-300">
+  <div className="text-center  px-1">
+    <div className="text-red-400 text-xs mb-1">{label}</div>
+    <div className="text-lg font-bold text-red-400">
       {value}
     </div>
   </div>
 );
 
 const Colon = () => (
-  <div className="lg:text-6xl   mt-4 font-bold text-gray-300">
+  <div className="text-2xl mt-2 font-bold text-red-500">
     :
   </div>
 );

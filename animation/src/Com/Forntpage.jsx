@@ -82,7 +82,7 @@ const Forntpage = () => {
       {...scrollProps}
       className='h-screen flex flex-col items-center justify-center w-full bg-[#0a0a0a] overflow-hidden'>
      
-      <div className='absolute md:top-0 lg:top-0 sm:top-[0px] top-14 h-10 lg:text-5xl md:text-5xl sm:text-3xl text-2xl md:bg-yllow-200/20 sm:bg-gren-600/20 lg:bg-rd-400/20 w-full bg-gree-400/30 flex justify-center items-center  z-50 font-loadfont'>
+      <div className='absolute md:top-0 lg:top-0 sm:top-[0px] top-14 h-10 lg:text-5xl md:text-5xl sm:text-3xl text-2xl md:bg-yllow-200/20 sm:bg-gren-600/20 lg:bg-rd-400/20 w-full bg-gree-400/30 flex justify-center md:justify-end items-center  z-50 font-loadfont'>
         <Timer />
       </div>
       

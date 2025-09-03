@@ -75,14 +75,14 @@ const Timeline = () => {
     }, []);
 
     const timelineData = [
-        { time: "7:30 AM", event: "Team Registration" },
-        { time: "8:00 AM", event: "Opening Ceremony" },
-        { time: "9:00 AM", event: "Hackathon Begins" },
-        { time: "9:30 AM", event: "Mentor Sessions" },
-        { time: "10:00 AM", event: "Coffee Break" },
-        { time: "10:30 AM", event: "Workshop - AI/ML" },
-        { time: "11:00 AM", event: "Networking Session" },
-        { time: "11:30 AM", event: "Progress Check" },
+        { time: "8:00 AM", event: "Team Registration" },
+        { time: "10:00 AM", event: "Opening Ceremony" },
+        { time: "11:00 AM", event: "Hackathon Begins" },
+        { time: "2:00 PM", event: "Mentor Sessions" },
+        { time: "04:00 PM", event: "Coffee Break" },
+        { time: "05:00 PM", event: "Workshop" },
+        { time: "09:00 PM", event: "Networking Session" },
+        { time: "11:00 PM", event: "Progress Check" },
     ];
 
     // Optimized star generation with fixed positions
@@ -353,9 +353,7 @@ const Timeline = () => {
                                         <div className="font-bold text-sm sm:text-base md:text-lg lg:text-xl bg-gradient-to-r from-pink-300 to-blue-300 bg-clip-text text-transparent leading-tight">
                                             {item.event}
                                         </div>
-                                        <div className="text-xs sm:text-sm text-gray-300 opacity-80 hidden sm:block">
-                                            Click to learn more
-                                        </div>
+                                  
                                         <div className="text-xs text-gray-300 opacity-70 sm:hidden">
                                             Tap for details
                                         </div>

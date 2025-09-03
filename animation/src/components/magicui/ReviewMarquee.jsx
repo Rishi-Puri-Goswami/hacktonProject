@@ -2,47 +2,67 @@ import React from "react";
 import { cn } from "@/lib/utils";
 import { Marquee } from "@/components/magicui/marquee";
 import Marquee3D from "./Marquee3D";
-import profilePho from '../../assets/teams/teamimages.jpg'
+
+
+
+import image5 from "../../assets/teams/DSC05945.jpg"  // converted from .HEIC
+import image6 from "../../assets/teams/DSC05950.jpg"  // converted from .HEIC
+import image7 from "../../assets/teams/DSC05953.jpg"  // converted from .HEIC
+import image8 from "../../assets/teams/DSC05955.jpg"  // converted from .HEIC
+import image9 from "../../assets/teams/DSC05976.jpg"  // converted from .HEIC
+import image10 from "../../assets/teams/DSC05991.jpg"  // converted from .HEIC
+import image11 from "../../assets/teams/DSC05996.jpg"  // converted from .HEIC
+import image12 from "../../assets/teams/DSC06000.jpg"  // converted from .HEIC
+import image14 from "../../assets/teams/DSC06032.jpg"  // converted from .HEIC
+import image15 from "../../assets/teams/DSC05951.jpg"  // converted from .HEIC
+import image16 from "../../assets/teams/DSC05954.jpg"  // converted from .HEIC
+import image17 from "../../assets/teams/DSC05974.jpg"  // converted from .HEIC
+import image18 from "../../assets/teams/DSC05971.jpg"  // converted from .HEIC
+import image19 from "../../assets/teams/DSC05968.jpg"  // converted from .HEIC
+import image20 from "../../assets/teams/DSC06061.jpg"  // converted from .HEIC
+import image21 from "../../assets/teams/DSC06058.jpg"  // converted from .HEIC
+import image22 from "../../assets/teams/DSC06052.jpg"  // converted from .HEIC
+import image23 from "../../assets/teams/DSC06060.jpg"  // converted from .HEIC
+import image24 from "../../assets/teams/DSC06078.jpg"  // converted from .HEIC
+import image25 from "../../assets/teams/DSC06079.jpg"  // converted from .HEIC
+import image26 from "../../assets/teams/DSC06101.jpg"  // converted from .HEIC
+  // converted from .HEIC
+
+  
 
 // Sample reviews data
+
 const reviews = [
-  {
-    name: "Jack",
-    username: "@jack",
-    body: "I've never seen anything like this before. It's amazing. I love it.",
-    img: "https://ik.imagekit.io/rcfcr7y0e/teamimages.jpg?updatedAt=1756833882794",
-  },
-  {
-    name: "Jill",
-    username: "@jill",
-    body: "I don't know what to say. I'm speechless. This is amazing.",
-    img: "https://ik.imagekit.io/rcfcr7y0e/teamimages.jpg?updatedAt=1756833882794",
-  },
-  {
-    name: "John",
-    username: "@john",
-    body: "I'm at a loss for words. This is amazing. I love it.",
-    img: "https://ik.imagekit.io/rcfcr7y0e/teamimages.jpg?updatedAt=1756833882794",
-  },
-  {
-    name: "Jane",
-    username: "@jane",
-    body: "I'm at a loss for words. This is amazing. I love it.",
-    img: "https://ik.imagekit.io/rcfcr7y0e/teamimages.jpg?updatedAt=1756833882794",
-  },
-  {
-    name: "Jenny",
-    username: "@jenny",
-    body: "I'm at a loss for words. This is amazing. I love it.",
-    img: "https://ik.imagekit.io/rcfcr7y0e/teamimages.jpg?updatedAt=1756833882794",
-  },
-  {
-    name: "James",
-    username: "@james",
-    body: "I'm at a loss for words. This is amazing. I love it.",
-    img: "https://ik.imagekit.io/rcfcr7y0e/teamimages.jpg?updatedAt=1756833882794",
-  },
+ 
+  {   img: image5 },
+  {  img: image6 },
+  { img: image7},
+  {  img: image8 },
+  { img : image9},
+  {  img: image10 },
+  {  img: image11 },
+  {   img: image12 },
+  {   img: image14 },
+  {   img: image15 },
+  {   img: image16 },
+  {   img: image17 },
+  {   img: image18 },
+  {   img: image19 },
+  {   img: image20 },
+  {   img: image21 },
+  {   img: image22 },
+  {   img: image23 },
+  {   img: image24 },
+  {   img: image25 },
+  {   img: image26 },
+
+
+ 
 ];
+ 
+
+;
+
 
 const firstRow = reviews.slice(0, reviews.length / 2);
 const secondRow = reviews.slice(reviews.length / 2);
