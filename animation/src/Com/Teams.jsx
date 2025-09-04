@@ -134,14 +134,14 @@ const TeamPage = () => {
             name: "Pratul Agarwal",
             role: "H2S Platform Handler",
             level: "master",
-            image: "pratulImg",
+            image: "https://ik.imagekit.io/rcfcr7y0e/WhatsApp%20Image%202025-09-03%20at%2016.37.31_5dc348b0.jpg?updatedAt=1756967861512",
             socials: { linkedin: "https://www.linkedin.com/in/pratul-agarwal-173190261/",instagram: "https://www.instagram.com/pratulagarwal123/" },
           },
           {
             name: "Ishwar Verma",
             role: "UI/UX Designer",
             level: "master",
-            image: "ishwarImg",
+            image: "https://ik.imagekit.io/rcfcr7y0e/WhatsApp%20Image%202025-09-03%20at%2016.37.30_bedd7421.jpg?updatedAt=1756967845945",
             socials: { linkedin: "https://www.linkedin.com/in/ishwar-verrma/",instagram: "https://www.instagram.com/ishwarr.verma/" },
           },
         ]}

@@ -149,8 +149,7 @@ const Star = memo(() => {
         window.addEventListener('scroll', handleScroll, { passive: true });
         handleScroll();
         return () => window.removeEventListener('scroll', handleScroll);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [deviceType]); // zSpring and textSpring are stable refs, don't need to be dependencies
+    }, [deviceType]);
 
     // Performance-based star count
     const starCount = useMemo(() => {
@@ -193,7 +192,7 @@ const Star = memo(() => {
             className='bg-black w-full h-full relative flex items-center justify-center' 
             style={{ 
                 opacity: opa / 100,
-                pointerEvents: 'none' // Allow scroll events to pass through
+                pointerEvents: 'none'
             }}
         >
             <Canvas
@@ -210,7 +209,7 @@ const Star = memo(() => {
                     left: 0, 
                     width: '100%', 
                     height: '100%',
-                    pointerEvents: 'none' // Allow scroll events to pass through
+                    pointerEvents: 'none'
                 }}
             >
                 <ContextLossHandler setContextLost={setContextLost} />
@@ -223,13 +222,13 @@ const Star = memo(() => {
                 style={{ 
                     y: textSpring,
                     fontSize: `${fontSize}px`,
-                    pointerEvents: 'none' // Allow scroll events to pass through
+                    pointerEvents: 'none'
                 }}
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: showText ? 1 : 0, scale: showText ? 1 : 0.8 }}
                 transition={{ 
                     duration: deviceType === 'mobile' ? 0.6 : 0.8, 
-                    ease: [0.25, 0.1, 0.25, 1] // Custom bezier for smooth easing
+                    ease: [0.25, 0.1, 0.25, 1]
                 }}
             >
                 THEMES
@@ -238,13 +237,13 @@ const Star = memo(() => {
             {showText && (
                 <motion.div
                     className="absolute inset-0 flex items-center justify-center"
-                    style={{ pointerEvents: 'none' }} // Allow scroll events to pass through
+                    style={{ pointerEvents: 'none' }}
                     initial={{ opacity: 0, scale: 0.8, y: 20 }}
                     animate={{ opacity: 1, scale: 1, y: 0 }}
                     exit={{ opacity: 0, scale: 0.8, y: -20 }}
                     transition={{ 
                         duration: deviceType === 'mobile' ? 0.8 : 1.0, 
-                        ease: [0.25, 0.1, 0.25, 1], // Smooth cubic-bezier
+                        ease: [0.25, 0.1, 0.25, 1],
                         type: "spring",
                         damping: 25,
                         stiffness: 120
@@ -261,20 +260,26 @@ const Star = memo(() => {
                         style={{ 
                             width: '100%', 
                             height: '100%',
-                            pointerEvents: 'none' // Allow scroll events to pass through
+                            pointerEvents: 'none'
                         }}
                     >
-                        <ambientLight intensity={0.5} />
-                        <pointLight position={[10, 10, 10]} />
+                        {/* 🔥 Improved lighting */}
+                        <ambientLight intensity={0.8} />
+                        <directionalLight position={[5, 10, 5]} intensity={1.5} castShadow />
+                        <pointLight position={[-5, -5, 10]} intensity={1.2} />
+                        <spotLight position={[0, 15, 10]} angle={0.3} intensity={1.3} penumbra={0.5} />
+
                         <TexturedCylinder deviceType={deviceType} />
+
+                        {/* 🌟 Stronger bloom */}
                         {deviceType !== 'mobile' && (
                             <Suspense fallback={null}>
                                 <EffectComposer>
                                     <Bloom
-                                        intensity={deviceType === 'tablet' ? 3.0 : 5.0}
+                                        intensity={6.5}
                                         mipmapBlur
-                                        luminanceThreshold={0.1}
-                                        luminanceSmoothing={0.1}
+                                        luminanceThreshold={0.05} 
+                                        luminanceSmoothing={0.15}
                                     />
                                 </EffectComposer>
                             </Suspense>
@@ -292,7 +297,6 @@ const TexturedCylinder = memo(({ deviceType }) => {
     const meshRef = useRef();
     const { viewport } = useThree();
     
-    // Memoized scale based on device type and viewport
     const scale = useMemo(() => {
         const baseScale = Math.min(viewport.width, viewport.height) * 0.15;
         switch (deviceType) {
@@ -302,7 +306,6 @@ const TexturedCylinder = memo(({ deviceType }) => {
         }
     }, [deviceType, viewport]);
 
-    // Optimized geometry args based on device
     const geometryArgs = useMemo(() => {
         const segments = deviceType === 'mobile' ? 20 : deviceType === 'tablet' ? 30 : 40;
         return [3.5, 3.5, 1, segments, segments, true];
@@ -310,7 +313,6 @@ const TexturedCylinder = memo(({ deviceType }) => {
 
     useFrame((state, delta) => {
         if (meshRef.current) {
-            // Smooth rotation with delta time for consistent speed across different frame rates
             const rotationSpeed = deviceType === 'mobile' ? 0.6 : 0.8;
             meshRef.current.rotation.y += delta * rotationSpeed;
         }
@@ -334,7 +336,7 @@ const TexturedCylinder = memo(({ deviceType }) => {
     );
 });
 
-// Smooth camera updater with interpolation and viewport awareness
+// Smooth camera updater
 const CameraUpdater = memo(({ zSpring }) => {
     const { camera, viewport } = useThree();
     const targetPosition = useRef(1000);
@@ -342,23 +344,16 @@ const CameraUpdater = memo(({ zSpring }) => {
 
     useFrame(() => {
         targetPosition.current = zSpring.get();
-        
-        // Smooth interpolation for camera movement
-        const lerpFactor = 0.08; // Adjust for smoother/faster movement
+        const lerpFactor = 0.08;
         currentPosition.current = THREE.MathUtils.lerp(
             currentPosition.current, 
             targetPosition.current, 
             lerpFactor
         );
-        
         camera.position.z = currentPosition.current;
-        
-        // Ensure camera is always centered
         camera.position.x = 0;
         camera.position.y = 0;
         camera.lookAt(0, 0, 0);
-        
-        // Update camera aspect ratio for proper centering
         camera.aspect = viewport.width / viewport.height;
         camera.updateProjectionMatrix();
     });
@@ -366,7 +361,7 @@ const CameraUpdater = memo(({ zSpring }) => {
     return null;
 });
 
-// Enhanced context loss handler
+// Context loss handler
 const ContextLossHandler = memo(({ setContextLost }) => {
     const { gl } = useThree();
 
@@ -393,7 +388,5 @@ const ContextLossHandler = memo(({ setContextLost }) => {
 
     return null;
 });
-
-
 
 export default Star;

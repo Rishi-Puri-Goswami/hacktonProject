@@ -50,7 +50,7 @@ const App = () => {
     { name: "Themes", ref: themesRef },
     { name: "Timeline", ref: timelineRef },
     { name: "Prizes", ref: prizesRef },
-    { name: "glimpse", ref: mentorsRef },
+    { name: "Glimpse", ref: mentorsRef },
     { name: "Team", ref: teamRef },
   ];
 

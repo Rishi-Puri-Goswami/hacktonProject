@@ -140,9 +140,10 @@ const TiltCard = ({ amount = "7,00,000", currency = "₹", size = "large", title
             {(title || subtitle) && (
               <div className="text-center mb-2">
                 {title && (
-                  <div className="text-sm text-violet-300 font-medium tracking-wide">
-                    {title}
-                  </div>
+                  <div className="text-xl text-violet-300 font-medium  tracking-wide">
+  {title}
+</div>
+
                 )}
                 {subtitle && (
                   <div className="text-xs text-gray-300 opacity-70">
@@ -151,21 +152,24 @@ const TiltCard = ({ amount = "7,00,000", currency = "₹", size = "large", title
                 )}
               </div>
             )}
-            <div className="items-center justify-center h-fit w-fit flex">
-              <div className={`${config.currencyText} font-bold text-transparent bg-clip-text bg-gradient-to-br from-violet-300 via-purple-300 to-indigo-300 drop-shadow-2xl`}>
-                {currency}
-              </div>
-              {isHovered && (
-                <div className={`absolute inset-0 ${config.currencyText} font-bold text-violet-300 blur-sm opacity-50 animate-pulse`}>
+
+            {/* 👉 Updated Part to Center Amount */}
+            <div className="flex flex-col items-center justify-center h-fit w-fit">
+              {currency && (
+                <div className={`${config.currencyText} font-bold text-transparent bg-clip-text bg-gradient-to-br from-violet-300 via-purple-300 to-indigo-300 drop-shadow-2xl`}>
                   {currency}
                 </div>
               )}
-              <div className="text-right">
-                <div className={`${config.amountText} font-bold    text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-100 to-violet-200 tracking-tight leading-none`}>
-                  {amount}
+              {isHovered && currency && (
+                <div className={`absolute inset-0 ${config.currencyText} font-bold text-violet-300 blur-sm opacity-50 animate-pulse text-center`}>
+                  {currency}
                 </div>
+              )}
+              <div className={`${config.amountText} font-bold text-transparent bg-clip-text bg-gradient-to-r  from-white via-gray-100 to-violet-200 tracking-tight  items-center justify-center w-[500px]  leading-none text-center`}>
+                {amount}
               </div>
             </div>
+            {/* 👆 End of updated part */}
           </div>
         </div>
       </div>
@@ -181,25 +185,25 @@ const TiltCard = ({ amount = "7,00,000", currency = "₹", size = "large", title
 
 const PrizesRewardsPage = () => {
   return (
-    <div className="z-50 min-h-screen pb-10  w-full relative overflow-hidden">
+    <div className="z-50 min-h-screen pb-10 w-full relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-slate-900 to-black" />
 
       {/* Cards */}
       <div className="relative z-10 flex flex-col items-center justify-center min-h-screen">
-        <h1 className="text-4xl sm:text-6xl flex items-center  justify-center   md:text-7xl font-bold text-white mb-10">
+        <h1 className="text-4xl sm:text-6xl flex items-center justify-center md:text-7xl font-bold text-white mb-10">
           Prizes & Rewards
         </h1>
         <TiltCard 
           amount="7,00,000"
-          title="Total Prize Pool"
-          subtitle="Turn your ideas into reality and win amazing prizes"
+          title="Total Prize Worth"
+          subtitle="Turn your ideas into reality and win amazing prizes including cash prize 1.5 L"
         />
 
         <div className="flex gap-4 mt-20 flex-wrap justify-center">
           <TiltCard 
             amount="1,50,000" 
-            title="Grand Prize Pool" 
-            subtitle="Total prize pool for innovative solutions"
+            title="Grand Cash Pool" 
+            subtitle="Total cash  pool for innovative solutions"
             size="small"
           />
           <TiltCard 

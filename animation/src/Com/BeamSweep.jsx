@@ -1,59 +1,39 @@
 import React from "react";
+import { Marquee } from "@magic-ui/react";
+import { ReviewCard } from "./ReviewCard";
 
-const BeamSweep = () => {
-  const svgStyles = {
-    width: "100%",
-    height: "auto",
-  };
+const reviews = [
+  { name: "Jack", username: "@jack", body: "Amazing!", img: "https://avatar.vercel.sh/jack" },
+  { name: "Jill", username: "@jill", body: "Speechless!", img: "https://avatar.vercel.sh/jill" },
+  { name: "John", username: "@john", body: "I love it!", img: "https://avatar.vercel.sh/john" },
+  { name: "Jane", username: "@jane", body: "So cool!", img: "https://avatar.vercel.sh/jane" },
+  { name: "Jenny", username: "@jenny", body: "Fantastic!", img: "https://avatar.vercel.sh/jenny" },
+  { name: "James", username: "@james", body: "Mind-blowing!", img: "https://avatar.vercel.sh/james" },
+];
 
-  const beamLineStyles = {
-    stroke: "url(#beamGradient)",
-    strokeWidth: 3,
-    fill: "none",
-    strokeDasharray: 500,
-    strokeDashoffset: 500,
-    animation: "beamSweep 3s linear infinite",
-  };
+const firstRow = reviews.slice(0, reviews.length / 2);
+const secondRow = reviews.slice(reviews.length / 2);
 
+export function MarqueeDemo() {
   return (
-    <div style={{ width: "200px", display: "flex", justifyContent: "center" }}>
-      <svg viewBox="0 0 236 68" xmlns="http://www.w3.org/2000/svg" style={svgStyles}>
-        <path
-          className="beam-line"
-          d="M0.5 0.5H89C90.6569 0.5 92 1.84315 92 3.5V29C92 30.6569 93.3431 32 95 32H148.5C150.157 32 151.5 33.3431 151.5 35V64C151.5 65.6569 152.843 67 154.5 67H235.5"
-          style={beamLineStyles}
-        />
-        <defs>
-          <linearGradient id="beamGradient" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="236" y2="0">
-            <stop stopColor="#2EB9DF" stopOpacity="0"></stop>
-            <stop offset="0.25" stopColor="#2EB9DF" stopOpacity="1"></stop>
-            <stop offset="0.75" stopColor="#9E00FF" stopOpacity="1"></stop>
-            <stop offset="1" stopColor="#9E00FF" stopOpacity="0"></stop>
-          </linearGradient>
-        </defs>
-      </svg>
+    <div className="relative flex w-full flex-col items-center justify-center overflow-hidden gap-6">
+      {/* Top row */}
+      <Marquee pauseOnHover className="[--duration:20s]">
+        {firstRow.map((review) => (
+          <ReviewCard key={review.username} {...review} />
+        ))}
+      </Marquee>
 
-      {/* Keyframes for the animation */}
-      <style>
-        {`
-          @keyframes beamSweep {
-            0% {
-              stroke-dashoffset: 500;
-            }
-            40% {
-              stroke-dashoffset: 0;
-            }
-            60% {
-              stroke-dashoffset: -500;
-            }
-            100% {
-              stroke-dashoffset: -500;
-            }
-          }
-        `}
-      </style>
+      {/* Bottom row */}
+      <Marquee reverse pauseOnHover className="[--duration:20s]">
+        {secondRow.map((review) => (
+          <ReviewCard key={review.username} {...review} />
+        ))}
+      </Marquee>
+
+      {/* Optional gradient fade on sides */}
+      <div className="pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r from-background"></div>
+      <div className="pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-gradient-to-l from-background"></div>
     </div>
   );
-};
-
-export default BeamSweep;
+}
