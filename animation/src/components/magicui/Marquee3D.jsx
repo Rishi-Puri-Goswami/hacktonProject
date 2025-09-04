@@ -124,24 +124,33 @@ export default function UltraOptimizedMarquee3D() {
 
   // Reduced image set for better performance
   const images = useMemo(() => [
-    { img: "https://res.cloudinary.com/drm13zjc5/image/upload/c_scale,w_400,q_auto,f_webp/v1756945980/DSC06066_fjkkbr.webp" },
-    { img: "https://res.cloudinary.com/drm13zjc5/image/upload/c_scale,w_400,q_auto,f_webp/v1756945978/image2_hvtr9u.webp" },
-    { img: "https://res.cloudinary.com/drm13zjc5/image/upload/c_scale,w_400,q_auto,f_webp/v1756945972/DSC06065_oy5yke.webp" },
-    { img: "https://res.cloudinary.com/drm13zjc5/image/upload/c_scale,w_400,q_auto,f_webp/v1756945968/DSC06062_tidu1s.webp" },
-    { img: "https://res.cloudinary.com/drm13zjc5/image/upload/c_scale,w_400,q_auto,f_webp/v1756945927/DSC06039_shmwqo.webp" },
-    { img: "https://res.cloudinary.com/drm13zjc5/image/upload/c_scale,w_400,q_auto,f_webp/v1756945915/DSC06032_ygu0ot.webp" },
-    { img: "https://res.cloudinary.com/drm13zjc5/image/upload/c_scale,w_400,q_auto,f_webp/v1756945791/DSC05953_txzd2h.webp" },
-    { img: "https://res.cloudinary.com/drm13zjc5/image/upload/c_scale,w_400,q_auto,f_webp/v1756945878/DSC06011_hvmswk.webp" },
+    { img: "https://res.cloudinary.com/drm13zjc5/image/upload/v1756945980/DSC06066_fjkkbr.webp" },
+    { img: "https://res.cloudinary.com/drm13zjc5/image/upload/v1756945978/image2_hvtr9u.webp" },
+    { img: "https://res.cloudinary.com/drm13zjc5/image/upload/v1756945972/DSC06065_oy5yke.webp" },
+    { img: "https://res.cloudinary.com/drm13zjc5/image/upload/v1756945968/DSC06062_tidu1s.webp" },
+    { img: "https://res.cloudinary.com/drm13zjc5/image/upload/v1756945750/DSC05913_pbk8zg.webp" },
+    { img: "https://res.cloudinary.com/drm13zjc5/image/upload/v1756945927/DSC06039_shmwqo.webp" },
+    { img: "https://res.cloudinary.com/drm13zjc5/image/upload/v1756945915/DSC06032_ygu0ot.webp" },
+    { img: "https://res.cloudinary.com/drm13zjc5/image/upload/v1756945791/DSC05953_txzd2h.webp" },
+    { img: "https://res.cloudinary.com/drm13zjc5/image/upload/v1756945878/DSC06011_hvmswk.webp" },
+    { img: "https://res.cloudinary.com/drm13zjc5/image/upload/v1756945897/DSC06023_je5zte.webp" },
+    { img: "https://res.cloudinary.com/drm13zjc5/image/upload/v1756945820/DSC05975_ap5fjh.webp" },
+    { img: "https://res.cloudinary.com/drm13zjc5/image/upload/v1756945814/DSC05968_gerdgk.webp" },
+    { img: "https://res.cloudinary.com/drm13zjc5/image/upload/v1756945794/DSC05955_blgewh.webp" },
+    { img: "https://res.cloudinary.com/drm13zjc5/image/upload/v1756945873/DSC05996_ixjbi6.webp" },
+    { img: "https://res.cloudinary.com/drm13zjc5/image/upload/v1756945770/DSC05930_xullbg.webp" },
   ], []);
 
+
+  
   const imageUrls = useMemo(() => images.map(img => img.img), [images]);
   const { loadedImages } = useProgressiveImageLoader(imageUrls);
 
   // Split into 3 columns with fewer images each
   const [col1, col2, col3] = useMemo(() => [
-    images.slice(0, 3),
-    images.slice(3, 6), 
-    images.slice(6, 8)
+    images.slice(0, 5),
+    images.slice(5, 10), 
+    images.slice(10, 15)
   ], [images]);
 
   // Initialize after a brief delay to ensure smooth mounting
