@@ -58,24 +58,25 @@ const reviews = [
   // {  img: image3 },
   // {  img:  image4 },
   // { img: image5},
-  {   img: "https://res.cloudinary.com/drm13zjc5/image/upload/v1756943193/DSC06058_dz0anu.png" },
-  {  img: "https://res.cloudinary.com/drm13zjc5/image/upload/v1756943190/DSC06065_rsozex.png" },
-  { img: "https://res.cloudinary.com/drm13zjc5/image/upload/v1756943188/DSC06055_oud90b.png"},
-  {  img: "https://res.cloudinary.com/drm13zjc5/image/upload/v1756943173/DSC06053_wi3tn1.png" },
-  { img : "https://res.cloudinary.com/drm13zjc5/image/upload/v1756943159/DSC06045_ums4bc.png"},
-  {  img: "https://res.cloudinary.com/drm13zjc5/image/upload/v1756942035/DSC06023_vgffrn.png" },
-  {  img: "https://res.cloudinary.com/drm13zjc5/image/upload/v1756942009/DSC06011_zaukof.png" },
-  {   img: "https://res.cloudinary.com/drm13zjc5/image/upload/v1756941997/DSC06009_sbjgzr.png" },
-  {   img: "https://res.cloudinary.com/drm13zjc5/image/upload/v1756941973/DSC05999_xulzoc.png" },
-  {   img: "https://res.cloudinary.com/drm13zjc5/image/upload/v1756941899/DSC05975_ysall6.png" },
-   {   img: "https://res.cloudinary.com/drm13zjc5/image/upload/v1756941893/DSC05977_vx3bqw.png" },
-{   img: "https://res.cloudinary.com/drm13zjc5/image/upload/v1756941831/DSC05950_gtcl5x.png" },
- {   img: "https://res.cloudinary.com/drm13zjc5/image/upload/v1756941696/DSC05915_ow6cox.png" },
+  {   img: "https://res.cloudinary.com/drm13zjc5/image/upload/v1756945980/DSC06066_fjkkbr.webp" },
+  {  img: "https://res.cloudinary.com/drm13zjc5/image/upload/v1756945978/image2_hvtr9u.webp" },
+  { img: "https://res.cloudinary.com/drm13zjc5/image/upload/v1756945972/DSC06065_oy5yke.webp"},
+  {  img: "https://res.cloudinary.com/drm13zjc5/image/upload/v1756945968/DSC06062_tidu1s.webp" },
+  { img : "https://res.cloudinary.com/drm13zjc5/image/upload/v1756945927/DSC06039_shmwqo.webp"},
+  {  img: "https://res.cloudinary.com/drm13zjc5/image/upload/v1756945915/DSC06032_ygu0ot.webp" },
+  {   img: "https://res.cloudinary.com/drm13zjc5/image/upload/v1756945791/DSC05953_txzd2h.webp" },
+  {   img: "https://res.cloudinary.com/drm13zjc5/image/upload/v1756945878/DSC06011_hvmswk.webp" },
+  {  img: "https://res.cloudinary.com/drm13zjc5/image/upload/v1756945897/DSC06023_je5zte.webp" },
+  {   img: "https://res.cloudinary.com/drm13zjc5/image/upload/v1756945820/DSC05975_ap5fjh.webp" },
+  {   img: "https://res.cloudinary.com/drm13zjc5/image/upload/v1756945814/DSC05968_gerdgk.webp" },
+  {   img: "https://res.cloudinary.com/drm13zjc5/image/upload/v1756945794/DSC05955_blgewh.webp" },
+  {   img: "https://res.cloudinary.com/drm13zjc5/image/upload/v1756945873/DSC05996_ixjbi6.webp" },
+  {   img: "https://res.cloudinary.com/drm13zjc5/image/upload/v1756945770/DSC05930_xullbg.webp" },
+  {   img: "https://res.cloudinary.com/drm13zjc5/image/upload/v1756945750/DSC05913_pbk8zg.webp" },
   // {img: image20}
 
  
 ];
-
 // Split reviews into rows with more content
 const firstRow = reviews.slice(0, 4);
 const secondRow = reviews.slice(4, 8);
