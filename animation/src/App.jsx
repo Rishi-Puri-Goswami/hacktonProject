@@ -6,9 +6,10 @@ import LocomotiveScroll from 'locomotive-scroll';
 import PrizesRewardsPage from "./Com/PrizesRewardsPage";
 import Glimespage from "./Com/Glimespage";
 import About from "./Com/About";
-import Timeline from "./Com/Timeline";
+
 import Star from "./Com/Star";
 import Teams from "./Com/Teams";
+import Timeline from "./Com/TimeLine";
 
 const App = () => {
   const [naveopen, setnaveopen] = useState(false)
