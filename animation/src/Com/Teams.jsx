@@ -81,7 +81,7 @@ const TeamPage = () => {
         subtitle="The Visionaries"
         members={[
           {
-            name: "Dr.Pradeep Jha ke maa ke chut ",
+            name: "Dr.Pradeep Jha",
             role: "Lead Visionary",
             level: "legendary",
             image: "https://ik.imagekit.io/rcfcr7y0e/Screenshot%202025-09-04%20121036.png?updatedAt=1756976567715",
