@@ -199,6 +199,9 @@ const App = () => {
 export default App;
 
 
+
+
+
 // <div className="NAVBAR bg-ed-400/30 w-full py-2 mt-1 text-white flex justify-center items-center absolute top-0 left-0 z-50">
 //           <div className="flex px-1 py-1 gap-4 border-[1px] rounded-full border-white/30 bg-white/10 backdrop-blur-md">
 //             <div className="p-[2px] rounded-full bg-gradient-to-r from-pink-500 to-blue-600">
