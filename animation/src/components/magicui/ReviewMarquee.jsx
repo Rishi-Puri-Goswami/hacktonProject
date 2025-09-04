@@ -4,27 +4,27 @@ import { Marquee } from "@/components/magicui/marquee";
 import Marquee3D from "./Marquee3D";
 
 // Import images
-import image5 from "../../assets/teams/DSC05945.jpg"
-import image6 from "../../assets/teams/DSC05950.jpg"
-import image7 from "../../assets/teams/DSC05953.jpg"
-import image8 from "../../assets/teams/DSC05955.jpg"
-import image9 from "../../assets/teams/DSC05976.jpg"
-import image10 from "../../assets/teams/DSC05991.jpg"
-import image11 from "../../assets/teams/DSC05996.jpg"
-import image12 from "../../assets/teams/DSC06000.jpg"
-import image14 from "../../assets/teams/DSC06032.jpg"
-import image15 from "../../assets/teams/DSC05951.jpg"
-import image16 from "../../assets/teams/DSC05954.jpg"
-import image17 from "../../assets/teams/DSC05974.jpg"
-import image18 from "../../assets/teams/DSC05971.jpg"
-import image19 from "../../assets/teams/DSC05968.jpg"
-import image20 from "../../assets/teams/DSC06061.jpg"
-import image21 from "../../assets/teams/DSC06058.jpg"
-import image22 from "../../assets/teams/DSC06052.jpg"
-import image23 from "../../assets/teams/DSC06060.jpg"
-import image24 from "../../assets/teams/DSC06078.jpg"
-import image25 from "../../assets/teams/DSC06079.jpg"
-import image26 from "../../assets/teams/DSC06101.jpg"
+// import image5 from "../../assets/teams/DSC05945.jpg"
+// import image6 from "../../assets/teams/DSC05950.jpg"
+// import image7 from "../../assets/teams/DSC05953.jpg"
+// import image8 from "../../assets/teams/DSC05955.jpg"
+// import image9 from "../../assets/teams/DSC05976.jpg"
+// import image10 from "../../assets/teams/DSC05991.jpg"
+// import image11 from "../../assets/teams/DSC05996.jpg"
+// import image12 from "../../assets/teams/DSC06000.jpg"
+// import image14 from "../../assets/teams/DSC06032.jpg"
+// import image15 from "../../assets/teams/DSC05951.jpg"
+// import image16 from "../../assets/teams/DSC05954.jpg"
+// import image17 from "../../assets/teams/DSC05974.jpg"
+// import image18 from "../../assets/teams/DSC05971.jpg"
+// import image19 from "../../assets/teams/DSC05968.jpg"
+// import image20 from "../../assets/teams/DSC06061.jpg"
+// import image21 from "../../assets/teams/DSC06058.jpg"
+// import image22 from "../../assets/teams/DSC06052.jpg"
+// import image23 from "../../assets/teams/DSC06060.jpg"
+// import image24 from "../../assets/teams/DSC06078.jpg"
+// import image25 from "../../assets/teams/DSC06079.jpg"
+// import image26 from "../../assets/teams/DSC06101.jpg"
 
 // Optimized hook for window dimensions
 const useWindowDimensions = () => {
@@ -144,29 +144,27 @@ export function ReviewMarquee() {
   const { width } = useWindowDimensions();
   
   // Memoize reviews array to prevent recreation on every render
-  const reviews = useMemo(() => [
-    { img: image5 },
-    { img: image6 },
-    { img: image7 },
-    { img: image8 },
-    { img: image9 },
-    { img: image10 },
-    { img: image11 },
-    { img: image12 },
-    { img: image14 },
-    { img: image15 },
-    { img: image16 },
-    { img: image17 },
-    { img: image18 },
-    { img: image19 },
-    { img: image20 },
-    { img: image21 },
-    { img: image22 },
-    { img: image23 },
-    { img: image24 },
-    { img: image25 },
-    { img: image26 }
-  ], []);
+const reviews = [
+  // {  img: image3 },
+  // {  img:  image4 },
+  // { img: image5},
+  {   img: "https://res.cloudinary.com/drm13zjc5/image/upload/v1756943193/DSC06058_dz0anu.png" },
+  {  img: "https://res.cloudinary.com/drm13zjc5/image/upload/v1756943190/DSC06065_rsozex.png" },
+  { img: "https://res.cloudinary.com/drm13zjc5/image/upload/v1756943188/DSC06055_oud90b.png"},
+  {  img: "https://res.cloudinary.com/drm13zjc5/image/upload/v1756943173/DSC06053_wi3tn1.png" },
+  { img : "https://res.cloudinary.com/drm13zjc5/image/upload/v1756943159/DSC06045_ums4bc.png"},
+  {  img: "https://res.cloudinary.com/drm13zjc5/image/upload/v1756942035/DSC06023_vgffrn.png" },
+  {  img: "https://res.cloudinary.com/drm13zjc5/image/upload/v1756942009/DSC06011_zaukof.png" },
+  {   img: "https://res.cloudinary.com/drm13zjc5/image/upload/v1756941997/DSC06009_sbjgzr.png" },
+  {   img: "https://res.cloudinary.com/drm13zjc5/image/upload/v1756941973/DSC05999_xulzoc.png" },
+  {   img: "https://res.cloudinary.com/drm13zjc5/image/upload/v1756941899/DSC05975_ysall6.png" },
+   {   img: "https://res.cloudinary.com/drm13zjc5/image/upload/v1756941893/DSC05977_vx3bqw.png" },
+{   img: "https://res.cloudinary.com/drm13zjc5/image/upload/v1756941831/DSC05950_gtcl5x.png" },
+ {   img: "https://res.cloudinary.com/drm13zjc5/image/upload/v1756941696/DSC05915_ow6cox.png" },
+  // {img: image20}
+
+ 
+];
 
   // Memoize row splits
   const { firstRow, secondRow } = useMemo(() => {

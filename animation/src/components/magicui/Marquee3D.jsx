@@ -1,16 +1,16 @@
 import React from 'react';
 
 
-import image5 from "../../../src/assets/teams/DSC05945.jpg"  // converted from .HEIC
-import image6 from "../../../src/assets/teams/DSC05950.jpg"  // converted from .HEIC
-import image7 from "../../../src/assets/teams/DSC05953.jpg"  // converted from .HEIC
-import image8 from "../../../src/assets/teams/DSC05955.jpg"  // converted from .HEIC
-import image9 from "../../../src/assets/teams/DSC05976.jpg"  // converted from .HEIC
-import image10 from "../../../src/assets/teams/DSC05991.jpg"  // converted from .HEIC
-import image11 from "../../../src/assets/teams/DSC05996.jpg"  // converted from .HEIC
-import image12 from "../../../src/assets/teams/DSC06000.jpg"  // converted from .HEIC
-import image14 from "../../../src/assets/teams/DSC06032.jpg"  // converted from .HEIC
-import image15 from "../../../src/assets/teams/DSC06046.jpg"  // converted from .HEIC
+// import image5 from "../../../src/assets/teams/DSC05945.jpg"  // converted from .HEIC
+// import image6 from "../../../src/assets/teams/DSC05950.jpg"  // converted from .HEIC
+// import image7 from "../../../src/assets/teams/DSC05953.jpg"  // converted from .HEIC
+// import image8 from "../../../src/assets/teams/DSC05955.jpg"  // converted from .HEIC
+// import image9 from "../../../src/assets/teams/DSC05976.jpg"  // converted from .HEIC
+// import image10 from "../../../src/assets/teams/DSC05991.jpg"  // converted from .HEIC
+// import image11 from "../../../src/assets/teams/DSC05996.jpg"  // converted from .HEIC
+// import image12 from "../../../src/assets/teams/DSC06000.jpg"  // converted from .HEIC
+// import image14 from "../../../src/assets/teams/DSC06032.jpg"  // converted from .HEIC
+// import image15 from "../../../src/assets/teams/DSC06046.jpg"  // converted from .HEIC
 
 
 
@@ -58,19 +58,19 @@ const reviews = [
   // {  img: image3 },
   // {  img:  image4 },
   // { img: image5},
-  {   img: image5 },
-  {  img: image6 },
-  { img: image7},
-  {  img: image8 },
-  { img : image9},
-  {  img: image10 },
-  {  img: image11 },
-  {   img: image12 },
-  {   img: image14 },
-  {   img: image15 },
-  // {   img: image16 },
-  // {   img: image17 },
-  // {   img: image18 },
+  {   img: "https://res.cloudinary.com/drm13zjc5/image/upload/v1756943193/DSC06058_dz0anu.png" },
+  {  img: "https://res.cloudinary.com/drm13zjc5/image/upload/v1756943190/DSC06065_rsozex.png" },
+  { img: "https://res.cloudinary.com/drm13zjc5/image/upload/v1756943188/DSC06055_oud90b.png"},
+  {  img: "https://res.cloudinary.com/drm13zjc5/image/upload/v1756943173/DSC06053_wi3tn1.png" },
+  { img : "https://res.cloudinary.com/drm13zjc5/image/upload/v1756943159/DSC06045_ums4bc.png"},
+  {  img: "https://res.cloudinary.com/drm13zjc5/image/upload/v1756942035/DSC06023_vgffrn.png" },
+  {  img: "https://res.cloudinary.com/drm13zjc5/image/upload/v1756942009/DSC06011_zaukof.png" },
+  {   img: "https://res.cloudinary.com/drm13zjc5/image/upload/v1756941997/DSC06009_sbjgzr.png" },
+  {   img: "https://res.cloudinary.com/drm13zjc5/image/upload/v1756941973/DSC05999_xulzoc.png" },
+  {   img: "https://res.cloudinary.com/drm13zjc5/image/upload/v1756941899/DSC05975_ysall6.png" },
+   {   img: "https://res.cloudinary.com/drm13zjc5/image/upload/v1756941893/DSC05977_vx3bqw.png" },
+{   img: "https://res.cloudinary.com/drm13zjc5/image/upload/v1756941831/DSC05950_gtcl5x.png" },
+ {   img: "https://res.cloudinary.com/drm13zjc5/image/upload/v1756941696/DSC05915_ow6cox.png" },
   // {img: image20}
 
  
