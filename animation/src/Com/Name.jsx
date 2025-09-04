@@ -59,18 +59,24 @@ const Name = () => {
       </div>
 
       {/* Gradient Heading */}
-      <div className="flex absolute bg-red-400 leading-tight tracking-tighter font-semibold justify-center font-loadfont 
-        text-[10vw] sm:text-[8vw] md:text-[6vw]  lg:text-[104px]
-        top-14 sm:top-24 md:top-32 lg:top-36 items-center 
-        w-[90vw] sm:w-[70vw] md:w-[60vw] lg:w-[50vw]
-        h-[12vh] sm:h-[16vh] md:h-[20vh] 
-        z-50 bg-clip-text text-transparent 
-        bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-600">
-        HACKA
-        <span className="bg-clip-text text-transparent bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-600">
-          THON
-        </span>
-      </div>
+      <div
+  className="flex absolute leading-tight tracking-tighter font-semibold justify-center font-loadfont 
+    text-[10vw] sm:text-[8vw] md:text-[6vw] lg:text-[104px]
+    top-14 sm:top-24 md:top-32 lg:top-36 items-center 
+    w-[90vw] sm:w-[70vw] md:w-[60vw] lg:w-[50vw]
+    h-[12vh] sm:h-[16vh] md:h-[20vh] 
+    z-50 bg-clip-text text-transparent 
+    bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-600"
+>
+  HACKA
+  <span className="bg-clip-text text-transparent bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-600">
+    THON
+  </span>
+  <span className="ml-2 bg-clip-text text-transparent bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-600">
+    4.0
+  </span>
+</div>
+
     </div>
   );
 };

@@ -6,6 +6,7 @@ import StarDemo from './RandomStars';
 import image from "../assets/image.png"
 import image2 from "../assets/image2.png"
 import Rightball from './Rightball';
+import imageman from "../assets/vrmanO.webp"
 import image3 from "../assets/image3.png"
 import image5 from "../assets/image5.png"
 import HackathonSection from './HackathonSection';
