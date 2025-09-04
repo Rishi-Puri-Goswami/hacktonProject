@@ -84,13 +84,13 @@ const TeamPage = () => {
             name: "Pradeep Jha",
             role: "Lead Visionary",
             level: "legendary",
-            image: "/images/pradeep.jpg",
+            image: "https://ik.imagekit.io/rcfcr7y0e/Screenshot%202025-09-04%20121036.png?updatedAt=1756976567715",
           },
           {
             name: "Pankaj Jain",
             role: "Strategic Mind",
             level: "legendary",
-            image: "/images/pankaj.jpg",
+            image: "https://ik.imagekit.io/rcfcr7y0e/Screenshot%202025-09-04%20121209.png?updatedAt=1756976607127",
           },
         ]}
         cardSize="large"
