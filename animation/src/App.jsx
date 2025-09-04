@@ -167,7 +167,9 @@ const App = () => {
 ) : (
   // ---------- Mobile Screen (Register Button Only) ----------
   <motion.div
-    className="h-fit w-fit shrink-0 px-3 py-2 font-loadfont absolute top-2 right-2  
+    className="h-fit w-fit shrink-0 px-3 py-2 
+    z-[9999]
+    font-loadfont absolute top-2 right-2  
       rounded-[20px] font-semibold text-[15px] sm:text-[16px]
       flex items-center justify-center bg-gradient-to-r from-purple-600 to-indigo-600 
       text-white shadow-lg cursor-pointer"
