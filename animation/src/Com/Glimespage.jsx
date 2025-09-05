@@ -5,7 +5,7 @@ import { ReviewMarquee } from '../components/magicui/ReviewMarquee'
 const Glimespage = () => {
   return (
   
-<div    className=" h-[150vh]  w-full z-[999]  overflow-hidden  bg-black" >
+<div    className="  h-[200vh]  w-full z-[999]   overflow     bg-black" >
 
 
 

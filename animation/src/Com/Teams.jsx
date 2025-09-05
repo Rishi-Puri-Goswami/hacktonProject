@@ -62,7 +62,7 @@ const TeamPage = () => {
 
         <div className="flex justify-center items-center space-x-3 md:space-x-4 mb-3 md:mb-8">
           <div className="w-8 md:w-16 h-0.5 md:h-1 bg-gradient-to-r from-pink-500 to-violet-500 animate-pulse"></div>
-          <FaStar className="text-yellow-400 text-lg md:text-2xl animate-spin" />
+          {/* <FaStar className="text-yellow-400 text-lg md:text-2xl animate-spin" /> */}
           <div className="w-8 md:w-16 h-0.5 md:h-1 bg-gradient-to-r from-violet-500 to-indigo-500 animate-pulse"></div>
         </div>
 
@@ -77,7 +77,7 @@ const TeamPage = () => {
 
       {/* Conveners */}
       <TeamSection
-        title="🏆 Conveners"
+        title=" Conveners"
         subtitle="The Visionaries"
         members={[
           {
@@ -99,7 +99,7 @@ const TeamPage = () => {
 
       {/* Developers */}
       <TeamSection
-        title="💻 Developers"
+        title=" Developers"
         subtitle="Code Warriors"
         members={[
           {
@@ -267,20 +267,21 @@ const TeamCard = ({ member, size, gradient, delay }) => {
   const getLevelEmoji = () => {
     switch (member.level) {
       case "legendary":
-        return "👑";
+        return ;
       case "master":
-        return "⭐";
+        return ;
       case "expert":
-        return "💎";
+        return ;
       case "pro":
-        return "🏆";
+        return ;
       default:
-        return "🚀";
+        return ;
     }
   };
 
   return (
     <div
+    // data-scroll data-scroll-speed = '-.9'
       className={`${getSizeClasses()} group relative overflow-hidden rounded-2xl lg:rounded-3xl transition-all duration-500 md:duration-700 hover:scale-105 lg:hover:scale-110 cursor-pointer flex flex-col`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
@@ -306,9 +307,9 @@ const TeamCard = ({ member, size, gradient, delay }) => {
               alt={member.name}
               className="relative w-12 h-12 md:w-16 md:h-16 lg:w-20 lg:h-20 xl:w-24 xl:h-24 rounded-full object-cover border-2 lg:border-4 border-white/30"
             />
-            <div className="absolute -top-1 -right-1 lg:-top-2 lg:-right-2 w-6 h-6 md:w-8 md:h-8 lg:w-10 lg:h-10 rounded-full bg-gradient-to-r from-yellow-400 to-orange-500 flex items-center justify-center text-xs md:text-lg lg:text-xl animate-bounce border border-white lg:border-2">
+            {/* <div className="absolute -top-1 -right-1 lg:-top-2 lg:-right-2 w-6 h-6 md:w-8 md:h-8 lg:w-10 lg:h-10 rounded-full bg-gradient-to-r from-yellow-400 to-orange-500 flex items-center justify-center text-xs md:text-lg lg:text-xl animate-bounce border border-white lg:border-2">
               {getLevelEmoji()}
-            </div>
+            </div> */}
           </div>
         </div>
 
