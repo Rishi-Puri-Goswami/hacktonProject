@@ -1,11 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { FaLinkedin, FaTwitter, FaGithub, FaStar, FaInstagram, FaFacebook } from "react-icons/fa";
-// import pratulImg from "../assets/pr1.jpg";
-// import rishiImg from "../assets/rishi1.png";
-// import ishwarImg from "../assets/ish1.jpeg";
-// import mukulImg from "../assets/mukul1.jpg";
-
-
 
 const TeamPage = () => {
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
@@ -19,26 +13,31 @@ const TeamPage = () => {
   }, []);
 
   return (
-    <div className="relative min-h-screen overflow-hidden bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900">
-      {/* Animated Background */}
+    <div className="relative min-h-screen overflow-hidden bg-[#0a0a0a]">
+      {/* Background Layer - Similar to frontpage */}
+      <div className='absolute h-full w-full'>
+        <img src="https://ik.imagekit.io/rcfcr7y0e/backgroundO.png?updatedAt=1756929166532" className='h-full w-full object-fill object-center opacity-90' alt="" />
+      </div>
+
+      {/* Animated Background Effects */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(120,119,198,0.3),transparent_50%)]"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(0,150,200,0.3),transparent_50%)]"></div>
         <div
-          className="absolute w-96 h-96 rounded-full bg-gradient-to-r from-pink-500/30 to-violet-500/30 blur-3xl animate-pulse"
+          className="absolute w-96 h-96 rounded-full bg-gradient-to-r from-cyan-500/30 to-blue-500/30 blur-3xl animate-pulse"
           style={{
             left: mousePos.x * 0.05,
             top: mousePos.y * 0.05,
             transform: "translate(-50%, -50%)",
           }}
         ></div>
-        <div className="absolute top-20 left-20 w-64 h-64 rounded-full bg-gradient-to-r from-blue-500/20 to-cyan-500/20 blur-2xl animate-bounce"></div>
-        <div className="absolute bottom-20 right-20 w-80 h-80 rounded-full bg-gradient-to-r from-emerald-500/20 to-teal-500/20 blur-3xl animate-pulse"></div>
+        <div className="absolute top-20 left-20 w-64 h-64 rounded-full bg-gradient-to-r from-teal-500/20 to-cyan-500/20 blur-2xl animate-bounce"></div>
+        <div className="absolute bottom-20 right-20 w-80 h-80 rounded-full bg-gradient-to-r from-blue-500/20 to-indigo-500/20 blur-3xl animate-pulse"></div>
 
         {/* Floating particles */}
         {[...Array(10)].map((_, i) => (
           <div
             key={i}
-            className="absolute w-2 h-2 bg-white/30 rounded-full animate-ping md:block"
+            className="absolute w-2 h-2 bg-cyan-300/30 rounded-full animate-ping md:block"
             style={{
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
@@ -49,35 +48,64 @@ const TeamPage = () => {
         ))}
       </div>
 
+      {/* Faded Background Text - Similar to frontpage 4.0 */}
+      <div className="absolute top-10 w-[100vw] overflow-hidden inset-0 flex items-center justify-center z-10 pointer-events-none">
+        <div
+          className="text-white font-bold select-none opacity-30"
+          style={{
+            fontSize: 'clamp(20rem, 35vw, 32rem)',
+            fontFamily: 'Impact, Arial Black, sans-serif',
+            fontWeight: '600',
+            textShadow: '0 0 40px rgba(0,200,255,0.3)',
+            background: 'linear-gradient(45deg, rgba(0,220,255,0.7), rgba(0,180,255,0.8), rgba(0,160,255,0.75))',
+            backgroundClip: 'text',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
+            filter: 'contrast(1.2) brightness(0.9)',
+            letterSpacing: '0.05em'
+          }}
+        >
+          TEAM
+        </div>
+      </div>
+
       {/* Hero Section */}
-      <div className="relative z-10 py-6 md:py-16 lg:py-20 text-center">
+      <div className="relative z-30 py-6 md:py-16 lg:py-20 text-center">
         <div className="relative">
-          <h1 className="text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-black text-transparent bg-clip-text bg-gradient-to-r from-pink-400 via-purple-400 to-indigo-400 mb-3 md:mb-6 animate-pulse tracking-tight">
+          <h1 className="text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-teal-400 to-blue-400 mb-3 md:mb-6 animate-pulse tracking-tight"
+              style={{
+                fontFamily: 'Impact, Arial Black, sans-serif',
+                textShadow: '0 0 60px rgba(0,255,200,0.4)'
+              }}>
             OUR TEAM
           </h1>
-          <div className="absolute inset-0 text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-black text-white/10 blur-sm">
+          <div className="absolute inset-0 text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-black text-cyan-100/10 blur-sm">
             OUR TEAM
           </div>
         </div>
 
         <div className="flex justify-center items-center space-x-3 md:space-x-4 mb-3 md:mb-8">
-          <div className="w-8 md:w-16 h-0.5 md:h-1 bg-gradient-to-r from-pink-500 to-violet-500 animate-pulse"></div>
+          <div className="w-8 md:w-16 h-0.5 md:h-1 bg-gradient-to-r from-cyan-500 to-blue-500 animate-pulse"></div>
           <FaStar className="text-yellow-400 text-lg md:text-2xl animate-spin" />
-          <div className="w-8 md:w-16 h-0.5 md:h-1 bg-gradient-to-r from-violet-500 to-indigo-500 animate-pulse"></div>
+          <div className="w-8 md:w-16 h-0.5 md:h-1 bg-gradient-to-r from-blue-500 to-teal-500 animate-pulse"></div>
         </div>
 
-        <p className="text-sm md:text-xl lg:text-2xl text-blue-100 max-w-2xl lg:max-w-3xl mx-auto px-4 leading-relaxed">
+        <p className="text-sm md:text-xl lg:text-2xl text-cyan-100 max-w-2xl lg:max-w-3xl mx-auto px-4 leading-relaxed">
           🚀 Meet the{" "}
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-400 to-purple-400 font-bold">
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-400 font-bold">
             extraordinary minds
           </span>{" "}
           shaping the future
         </p>
       </div>
 
+      {/* Background texture overlay - similar to frontpage */}
+      <img src="https://ik.imagekit.io/rcfcr7y0e/image.png?updatedAt=1756931161669" className='absolute h-screen w-full object-top object-fill z-20 opacity-60' alt="" />
+      <img src="https://ik.imagekit.io/rcfcr7y0e/image2.png?updatedAt=1756931161669" className='absolute h-screen w-full object-top z-20 opacity-50' alt="" />
+
       {/* Conveners */}
       <TeamSection
-        title="🏆 Conveners"
+        title="👑 Conveners"
         subtitle="The Visionaries"
         members={[
           {
@@ -94,12 +122,12 @@ const TeamPage = () => {
           },
         ]}
         cardSize="large"
-        gradient="from-pink-600 to-rose-500"
+        gradient="from-cyan-600 to-teal-500"
       />
 
       {/* Developers */}
       <TeamSection
-        title="💻 Developers"
+        title="⚡ Developers"
         subtitle="Code Warriors"
         members={[
           {
@@ -146,18 +174,22 @@ const TeamPage = () => {
           },
         ]}
         cardSize="medium"
-        gradient="from-blue-600 to-cyan-500"
+        gradient="from-teal-600 to-blue-500"
         specialLayout
       />
 
       {/* Footer */}
-      <footer className="relative z-10 mt-12 md:mt-20 bg-black/40 backdrop-blur-xl border-t border-white/20">
+      {/* <footer className="relative z-30 mt-12 md:mt-20 bg-black/60 backdrop-blur-xl border-t border-cyan-400/20">
         <div className="max-w-6xl mx-auto px-4 py-8 md:py-12 lg:py-16 text-center">
-          <h2 className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-pink-400 via-purple-400 to-indigo-400 mb-4">
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-teal-400 to-blue-400 mb-4"
+              style={{
+                fontFamily: 'Impact, Arial Black, sans-serif',
+                textShadow: '0 0 30px rgba(0,255,200,0.4)'
+              }}>
             Contact Us
           </h2>
-          <p className="text-sm md:text-lg text-blue-100 mb-6 max-w-2xl mx-auto">
-            Have questions or want to collaborate? Reach out and let’s build
+          <p className="text-sm md:text-lg text-cyan-100 mb-6 max-w-2xl mx-auto">
+            Have questions or want to collaborate? Reach out and let's build
             something amazing together.
           </p>
 
@@ -178,12 +210,12 @@ const TeamPage = () => {
               },
             ].map(({ icon: Icon, link }, i) => (
               <div key={i} className="relative group">
-                <div className="absolute inset-0 rounded-full bg-gradient-to-r from-pink-500 to-purple-500 blur group-hover:blur-md transition-all duration-300 opacity-0 group-hover:opacity-75"></div>
+                <div className="absolute inset-0 rounded-full bg-gradient-to-r from-cyan-500 to-blue-500 blur group-hover:blur-md transition-all duration-300 opacity-0 group-hover:opacity-75"></div>
                 <a
                   href={link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="relative w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 flex items-center justify-center text-white hover:text-pink-400 hover:border-pink-400/50 transition-all duration-300 hover:scale-125"
+                  className="relative w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/10 backdrop-blur-sm border border-cyan-400/20 flex items-center justify-center text-white hover:text-cyan-400 hover:border-cyan-400/50 transition-all duration-300 hover:scale-125"
                 >
                   <Icon className="w-5 h-5 md:w-6 md:h-6" />
                 </a>
@@ -191,28 +223,35 @@ const TeamPage = () => {
             ))}
           </div>
 
-          <div className="text-xs md:text-sm text-blue-200">
+          <div className="text-xs md:text-sm text-cyan-200">
             <p className="mb-1">📧 codefiesta@gitjaipur.com</p>
             <p>© {new Date().getFullYear()} Hackathon 4.0. All rights reserved.</p>
           </div>
         </div>
-      </footer>
+      </footer> */}
     </div>
   );
 };
 
 const TeamSection = ({ title, subtitle, members, cardSize, gradient, specialLayout }) => {
   return (
-    <div className="relative z-10 py-4 md:py-12 lg:py-16 px-3 md:px-6 lg:px-8">
+    <div className="relative z-30 py-4 md:py-12 lg:py-16 px-3 md:px-6 lg:px-8">
       <div className="max-w-5xl lg:max-w-7xl mx-auto">
         <div className="text-center mb-6 md:mb-12 lg:mb-16">
-          <h2 className="text-2xl md:text-4xl lg:text-5xl xl:text-6xl font-black text-white mb-2 md:mb-4 relative">
+          <h2 className="text-2xl md:text-4xl lg:text-5xl xl:text-6xl font-black text-white mb-2 md:mb-4 relative"
+              style={{
+                fontFamily: 'Impact, Arial Black, sans-serif',
+                textShadow: '0 0 40px rgba(0,255,200,0.5)'
+              }}>
             <span className="relative z-10">{title}</span>
-            <div className="absolute inset-0 text-white/20 blur-sm scale-110">{title}</div>
+            <div className="absolute inset-0 text-cyan-100/20 blur-sm scale-110">{title}</div>
           </h2>
-          <p className="text-sm md:text-lg xl:text-xl text-purple-200 font-semibold">{subtitle}</p>
+          <p className="text-sm md:text-lg xl:text-xl text-cyan-200 font-semibold">{subtitle}</p>
           <div
             className={`w-12 md:w-20 lg:w-24 h-1 lg:h-2 bg-gradient-to-r ${gradient} mx-auto mt-2 md:mt-4 lg:mt-6 rounded-full animate-pulse`}
+            style={{
+              boxShadow: '0 0 20px rgba(0,255,200,0.4)'
+            }}
           ></div>
         </div>
 
@@ -286,17 +325,23 @@ const TeamCard = ({ member, size, gradient, delay }) => {
       onMouseLeave={() => setIsHovered(false)}
       style={{ animationDelay: `${delay}s` }}
     >
-      {/* Animated Border */}
+      {/* Animated Border - similar to frontpage style */}
       <div
-        className="absolute inset-0 rounded-2xl lg:rounded-3xl bg-gradient-to-r from-pink-500 via-purple-500 via-blue-500 to-cyan-500 animate-spin p-0.5 lg:p-1"
-        style={{ animationDuration: "3s" }}
+        className="absolute inset-0 rounded-2xl lg:rounded-3xl bg-gradient-to-r from-cyan-500 via-teal-500 via-blue-500 to-indigo-500 animate-spin p-0.5 lg:p-1"
+        style={{ 
+          animationDuration: "3s",
+          boxShadow: '0 0 30px rgba(0,255,200,0.4)'
+        }}
       >
         <div className="w-full h-full rounded-2xl lg:rounded-3xl bg-gray-900"></div>
       </div>
 
       {/* Card Content */}
-      <div className="absolute inset-0.5 lg:inset-1 rounded-2xl lg:rounded-3xl bg-gradient-to-br from-gray-900/95 via-purple-900/90 to-indigo-900/95 backdrop-blur-xl border border-white/20 overflow-hidden">
+      <div className="absolute inset-0.5 lg:inset-1 rounded-2xl lg:rounded-3xl bg-gradient-to-br from-gray-900/95 via-slate-900/90 to-gray-800/95 backdrop-blur-xl border border-cyan-400/20 overflow-hidden">
         <div className={`absolute inset-0 bg-gradient-to-br ${gradient} opacity-20 group-hover:opacity-40 transition-opacity duration-500`}></div>
+
+        {/* Glow effect on hover - similar to frontpage */}
+        <div className={`absolute inset-0 bg-gradient-to-br from-cyan-500/10 via-transparent to-blue-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500`}></div>
 
         {/* Profile Image */}
         <div className="relative flex-grow p-2 lg:p-6 flex flex-col justify-center items-center">
@@ -304,21 +349,30 @@ const TeamCard = ({ member, size, gradient, delay }) => {
             <img
               src={member.image}
               alt={member.name}
-              className="relative w-12 h-12 md:w-16 md:h-16 lg:w-20 lg:h-20 xl:w-24 xl:h-24 rounded-full object-cover border-2 lg:border-4 border-white/30"
+              className="relative w-12 h-12 md:w-16 md:h-16 lg:w-20 lg:h-20 xl:w-24 xl:h-24 rounded-full object-cover border-2 lg:border-4 border-cyan-400/30"
+              style={{
+                boxShadow: '0 0 20px rgba(0,255,200,0.3)'
+              }}
             />
-            <div className="absolute -top-1 -right-1 lg:-top-2 lg:-right-2 w-6 h-6 md:w-8 md:h-8 lg:w-10 lg:h-10 rounded-full bg-gradient-to-r from-yellow-400 to-orange-500 flex items-center justify-center text-xs md:text-lg lg:text-xl animate-bounce border border-white lg:border-2">
+            <div className="absolute -top-1 -right-1 lg:-top-2 lg:-right-2 w-6 h-6 md:w-8 md:h-8 lg:w-10 lg:h-10 rounded-full bg-gradient-to-r from-yellow-400 to-orange-500 flex items-center justify-center text-xs md:text-lg lg:text-xl animate-bounce border border-white lg:border-2"
+                 style={{
+                   boxShadow: '0 0 15px rgba(255,215,0,0.5)'
+                 }}>
               {getLevelEmoji()}
             </div>
           </div>
         </div>
 
         {/* Info Section */}
-        <div className="relative flex-shrink-0 p-2 md:p-4 lg:p-14 bg-black/40 backdrop-blur-sm">
+        <div className="relative flex-shrink-0 p-2 md:p-4 lg:p-14 bg-black/60 backdrop-blur-sm">
           <div className="text-center">
-            <h3 className="text-xs md:text-sm lg:text-lg font-black text-white mb-1 lg:mb-2">
+            <h3 className="text-xs md:text-sm lg:text-lg font-black text-white mb-1 lg:mb-2"
+                style={{
+                  textShadow: '0 0 10px rgba(0,255,200,0.5)'
+                }}>
               {member.name}
             </h3>
-            <p className="text-purple-300 text-xs lg:text-sm font-semibold mb-2 lg:mb-4">
+            <p className="text-cyan-300 text-xs lg:text-sm font-semibold mb-2 lg:mb-4">
               {member.role}
             </p>
 
@@ -329,7 +383,10 @@ const TeamCard = ({ member, size, gradient, delay }) => {
                   href={member.socials.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-6 h-6 flex items-center justify-center rounded-full bg-white/10 border border-white/20 hover:text-pink-400 hover:border-pink-400 transition-all"
+                  className="w-6 h-6 flex items-center justify-center rounded-full bg-cyan-500/20 border border-cyan-400/30 hover:text-cyan-400 hover:border-cyan-400 hover:bg-cyan-400/30 transition-all duration-300"
+                  style={{
+                    boxShadow: '0 0 10px rgba(0,255,200,0.2)'
+                  }}
                 >
                   <FaLinkedin className="w-3 h-3" />
                 </a>
@@ -339,7 +396,10 @@ const TeamCard = ({ member, size, gradient, delay }) => {
                   href={member.socials.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-6 h-6 flex items-center justify-center rounded-full bg-white/10 border border-white/20 hover:text-pink-400 hover:border-pink-400 transition-all"
+                  className="w-6 h-6 flex items-center justify-center rounded-full bg-teal-500/20 border border-teal-400/30 hover:text-teal-400 hover:border-teal-400 hover:bg-teal-400/30 transition-all duration-300"
+                  style={{
+                    boxShadow: '0 0 10px rgba(0,200,150,0.2)'
+                  }}
                 >
                   <FaGithub className="w-3 h-3" />
                 </a>
@@ -349,7 +409,10 @@ const TeamCard = ({ member, size, gradient, delay }) => {
                   href={member.socials.instagram}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-6 h-6 flex items-center justify-center rounded-full bg-white/10 border border-white/20 hover:text-pink-400 hover:border-pink-400 transition-all"
+                  className="w-6 h-6 flex items-center justify-center rounded-full bg-blue-500/20 border border-blue-400/30 hover:text-blue-400 hover:border-blue-400 hover:bg-blue-400/30 transition-all duration-300"
+                  style={{
+                    boxShadow: '0 0 10px rgba(0,150,255,0.2)'
+                  }}
                 >
                   <FaInstagram className="w-3 h-3" />
                 </a>

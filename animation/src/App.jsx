@@ -3,7 +3,7 @@ import { motion, useMotionValue, useTransform, animate } from "framer-motion";
 import Loading from "./Com/Loading";
 import Forntpage from "./Com/Forntpage"; // Keep hero section eager (above the fold)
 import LocomotiveScroll from "locomotive-scroll";
-
+import Fot from "../src/Com/Fot"
 // ✅ Lazy load heavy sections
 const PrizesRewardsPage = React.lazy(() => import("./Com/PrizesRewardsPage"));
 const Glimespage = React.lazy(() => import("./Com/Glimespage"));
@@ -122,6 +122,9 @@ useEffect(() => {
           <Suspense fallback={<Loading />}>
             <Teams />
           </Suspense>
+        </div>
+        <div>
+          <Fot/>
         </div>
       </div>
 
