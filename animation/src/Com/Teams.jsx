@@ -105,7 +105,7 @@ const TeamPage = () => {
 
       {/* Conveners */}
       <TeamSection
-        title="👑 Conveners"
+        title=" Conveners"
         subtitle="The Visionaries"
         members={[
           {
@@ -127,7 +127,7 @@ const TeamPage = () => {
 
       {/* Developers */}
       <TeamSection
-        title="⚡ Developers"
+        title=" Developers"
         subtitle="Code Warriors"
         members={[
           {

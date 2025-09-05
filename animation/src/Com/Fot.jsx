@@ -55,7 +55,7 @@ const Fot = ({ targetDate = "2025-09-10T00:00:00" }) => {
       <div className="max-w-6xl mx-auto px-6 py-12 lg:py-16 text-center">
         {/* Title + Tagline */}
         <div className="text-center mb-16 flex flex-col justify-center items-center">
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-pink-400 via-purple-400 to-indigo-400 mb-8 leading-tight">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-transparent bg-clip-text  bg-white  mb-8 leading-tight">
             Hack. Hustle. Innovate.
           </h2>
 
@@ -92,11 +92,11 @@ const Fot = ({ targetDate = "2025-09-10T00:00:00" }) => {
               Contact
             </a>
             <span className="hover:text-pink-400 transition-colors">
-              +91 12345 67890
+              +91 7568291852
             </span>
             <span>,</span>
             <span className="hover:text-pink-400 transition-colors">
-              +91 98765 43210
+              +91 7357580894
             </span>
           </div>
 
