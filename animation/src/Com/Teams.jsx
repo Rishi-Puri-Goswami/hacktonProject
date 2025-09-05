@@ -21,7 +21,7 @@ const TeamPage = () => {
   return (
     <div className="relative min-h-screen overflow-hidden bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900">
       {/* Animated Background */}
-      <div className="absolute inset-0 overflow-hidden">
+      {/* <div className="absolute inset-0 overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(120,119,198,0.3),transparent_50%)]"></div>
         <div
           className="absolute w-96 h-96 rounded-full bg-gradient-to-r from-pink-500/30 to-violet-500/30 blur-3xl animate-pulse"
@@ -47,7 +47,7 @@ const TeamPage = () => {
             }}
           ></div>
         ))}
-      </div>
+      {/* </div>  */}
 
       {/* Hero Section */}
       <div className="relative z-10 py-6 md:py-16 lg:py-20 text-center">
@@ -288,12 +288,12 @@ const TeamCard = ({ member, size, gradient, delay }) => {
       style={{ animationDelay: `${delay}s` }}
     >
       {/* Animated Border */}
-      <div
+      {/* <div
         className="absolute inset-0 rounded-2xl lg:rounded-3xl bg-gradient-to-r from-pink-500 via-purple-500 via-blue-500 to-cyan-500 animate-spin p-0.5 lg:p-1"
         style={{ animationDuration: "3s" }}
       >
         <div className="w-full h-full rounded-2xl lg:rounded-3xl bg-gray-900"></div>
-      </div>
+      </div> */}
 
       {/* Card Content */}
       <div className="absolute inset-0.5 lg:inset-1 rounded-2xl lg:rounded-3xl bg-gradient-to-br from-gray-900/95 via-purple-900/90 to-indigo-900/95 backdrop-blur-xl border border-white/20 overflow-hidden">
