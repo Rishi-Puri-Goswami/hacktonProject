@@ -7,11 +7,11 @@ import { useSpring, motion } from 'framer-motion';
 import ue from '../assets/ueue.png';
 
 // Lazy load heavy post-processing components only when needed
-const EffectComposer = React.lazy(() => 
-  import('@react-three/postprocessing').then(module => ({ default: module.EffectComposer }))
+const EffectComposer = React.lazy(() =>
+    import('@react-three/postprocessing').then(module => ({ default: module.EffectComposer }))
 );
-const Bloom = React.lazy(() => 
-  import('@react-three/postprocessing').then(module => ({ default: module.Bloom }))
+const Bloom = React.lazy(() =>
+    import('@react-three/postprocessing').then(module => ({ default: module.Bloom }))
 );
 
 // Optimized Star component with better performance
@@ -30,16 +30,16 @@ const Star = memo(() => {
             if (width < 1024) return 'tablet';
             return 'desktop';
         };
-        
+
         setDeviceType(getDeviceType());
-        
+
         const handleResize = () => {
             if (throttleRef.current) clearTimeout(throttleRef.current);
             throttleRef.current = setTimeout(() => {
                 setDeviceType(getDeviceType());
             }, 150);
         };
-        
+
         window.addEventListener('resize', handleResize, { passive: true });
         return () => {
             window.removeEventListener('resize', handleResize);
@@ -54,34 +54,34 @@ const Star = memo(() => {
         const targetOpa = 100;
         const duration = deviceType === 'mobile' ? 1500 : 2000; // Slower for smoother effect
         const startTime = performance.now();
-        
+
         const animateOpacity = (currentTime) => {
             const elapsed = currentTime - startTime;
             const progress = Math.min(elapsed / duration, 1);
-            
+
             // Smooth easing function for opacity
             const easeOutQuart = 1 - Math.pow(1 - progress, 4);
             currentOpa = easeOutQuart * targetOpa;
-            
+
             setOpa(currentOpa);
-            
+
             if (progress < 1) {
                 rafId = requestAnimationFrame(animateOpacity);
             }
         };
-        
+
         rafId = requestAnimationFrame(animateOpacity);
         return () => cancelAnimationFrame(rafId);
     }, [deviceType]);
 
     // Optimized springs configuration for smoother animations
-    const springConfig = useMemo(() => ({ 
-        damping: deviceType === 'mobile' ? 50 : 40, 
+    const springConfig = useMemo(() => ({
+        damping: deviceType === 'mobile' ? 50 : 40,
         stiffness: deviceType === 'mobile' ? 120 : 150,
         mass: 1,
         restDelta: 0.01
     }), [deviceType]);
-    
+
     const zSpring = useSpring(1000, springConfig);
     const textSpring = useSpring(-10, springConfig);
 
@@ -99,7 +99,7 @@ const Star = memo(() => {
     useEffect(() => {
         let ticking = false;
         let lastProgress = 0;
-        
+
         const handleScroll = () => {
             if (!ticking) {
                 requestAnimationFrame(() => {
@@ -108,30 +108,30 @@ const Star = memo(() => {
                         const rect = section.getBoundingClientRect();
                         const animationHeight = rect.height - window.innerHeight;
                         const rawProgress = Math.max(0, Math.min(-rect.top / animationHeight, 1));
-                        
+
                         // Allow scrolling beyond animation completion
                         const isAnimationComplete = rawProgress >= 1;
-                        
+
                         if (!isAnimationComplete) {
                             // Smooth interpolation for smoother animation
                             const smoothing = deviceType === 'mobile' ? 0.1 : 0.15;
                             const progress = lastProgress + (rawProgress - lastProgress) * smoothing;
                             lastProgress = progress;
-                            
+
                             // Eased curves for smoother motion
                             const easeOutCubic = (t) => 1 - Math.pow(1 - t, 3);
                             const easeInOutCubic = (t) => t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
-                            
+
                             const easedProgress = easeInOutCubic(progress);
                             const newZ = 1000 - easedProgress * 950;
-                            
+
                             // Center-focused text animation
                             const textProgress = easeOutCubic(progress);
                             const newTextY = -window.innerHeight * 0.1 + textProgress * window.innerHeight * 0.2;
-                            
+
                             zSpring.set(newZ);
                             textSpring.set(newTextY);
-                            
+
                             setShowText(newZ < 200);
                         } else {
                             // Animation is complete, maintain final state but allow scrolling
@@ -149,7 +149,7 @@ const Star = memo(() => {
         window.addEventListener('scroll', handleScroll, { passive: true });
         handleScroll();
         return () => window.removeEventListener('scroll', handleScroll);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [deviceType]); // zSpring and textSpring are stable refs, don't need to be dependencies
 
     // Performance-based star count
@@ -177,8 +177,8 @@ const Star = memo(() => {
             <div className="w-full h-full flex items-center justify-center bg-black text-white">
                 <div className="text-center">
                     <h2 className="text-xl mb-2">WebGL rendering failed</h2>
-                    <button 
-                        onClick={() => window.location.reload()} 
+                    <button
+                        onClick={() => window.location.reload()}
                         className="px-4 py-2 bg-purple-600 rounded hover:bg-purple-700 transition-colors"
                     >
                         Refresh Page
@@ -189,26 +189,26 @@ const Star = memo(() => {
     }
 
     return (
-        <div 
-            className='bg-black w-full h-full relative flex items-center justify-center' 
-            style={{ 
+        <div
+            className='bg-black w-full h-full relative flex items-center justify-center'
+            style={{
                 opacity: opa / 100,
                 pointerEvents: 'none' // Allow scroll events to pass through
             }}
         >
             <Canvas
-                camera={{ 
-                    position: [0, 0, 1000], 
+                camera={{
+                    position: [0, 0, 1000],
                     fov: deviceType === 'mobile' ? 65 : deviceType === 'tablet' ? 55 : 50,
                     aspect: window.innerWidth / window.innerHeight
                 }}
                 gl={glSettings}
                 dpr={deviceType === 'mobile' ? [1, 1.5] : [1, 2]}
-                style={{ 
-                    position: 'absolute', 
-                    top: 0, 
-                    left: 0, 
-                    width: '100%', 
+                style={{
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    width: '100%',
                     height: '100%',
                     pointerEvents: 'none' // Allow scroll events to pass through
                 }}
@@ -219,16 +219,16 @@ const Star = memo(() => {
             </Canvas>
 
             <motion.div
-                className="absolute inset-0 flex items-center justify-center font-loadfont text-white font-loadFont whitespace-nowrap z-10"
-                style={{ 
+                className="absolute inset-0 flex items-start justify-center font-loadfont text-white font-loadFont whitespace-nowrap z-10"
+                style={{
                     y: textSpring,
                     fontSize: `${fontSize}px`,
                     pointerEvents: 'none' // Allow scroll events to pass through
                 }}
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: showText ? 1 : 0, scale: showText ? 1 : 0.8 }}
-                transition={{ 
-                    duration: deviceType === 'mobile' ? 0.6 : 0.8, 
+                transition={{
+                    duration: deviceType === 'mobile' ? 0.6 : 0.8,
                     ease: [0.25, 0.1, 0.25, 1] // Custom bezier for smooth easing
                 }}
             >
@@ -242,8 +242,8 @@ const Star = memo(() => {
                     initial={{ opacity: 0, scale: 0.8, y: 20 }}
                     animate={{ opacity: 1, scale: 1, y: 0 }}
                     exit={{ opacity: 0, scale: 0.8, y: -20 }}
-                    transition={{ 
-                        duration: deviceType === 'mobile' ? 0.8 : 1.0, 
+                    transition={{
+                        duration: deviceType === 'mobile' ? 0.8 : 1.0,
                         ease: [0.25, 0.1, 0.25, 1], // Smooth cubic-bezier
                         type: "spring",
                         damping: 25,
@@ -251,15 +251,15 @@ const Star = memo(() => {
                     }}
                 >
                     <Canvas
-                        camera={{ 
-                            position: [0, 0, 10], 
+                        camera={{
+                            position: [0, 0, 10],
                             fov: deviceType === 'mobile' ? 65 : deviceType === 'tablet' ? 55 : 50,
                             aspect: window.innerWidth / window.innerHeight
                         }}
                         gl={glSettings}
                         dpr={deviceType === 'mobile' ? [1, 1.5] : [1, 2]}
-                        style={{ 
-                            width: '100%', 
+                        style={{
+                            width: '100%',
                             height: '100%',
                             pointerEvents: 'none' // Allow scroll events to pass through
                         }}
@@ -267,18 +267,16 @@ const Star = memo(() => {
                         <ambientLight intensity={0.5} />
                         <pointLight position={[10, 10, 10]} />
                         <TexturedCylinder deviceType={deviceType} />
-                        {deviceType !== 'mobile' && (
-                            <Suspense fallback={null}>
-                                <EffectComposer>
-                                    <Bloom
-                                        intensity={deviceType === 'tablet' ? 3.0 : 5.0}
-                                        mipmapBlur
-                                        luminanceThreshold={0.1}
-                                        luminanceSmoothing={0.1}
-                                    />
-                                </EffectComposer>
-                            </Suspense>
-                        )}
+                        <Suspense fallback={null}>
+                            <EffectComposer>
+                                <Bloom
+                                    intensity={5.0}
+                                    mipmapBlur
+                                    luminanceThreshold={0.06}
+                                    luminanceSmoothing={0.1}
+                                />
+                            </EffectComposer>
+                        </Suspense>
                     </Canvas>
                 </motion.div>
             )}
@@ -291,7 +289,7 @@ const TexturedCylinder = memo(({ deviceType }) => {
     const tex = useTexture(ue);
     const meshRef = useRef();
     const { viewport } = useThree();
-    
+
     // Memoized scale based on device type and viewport
     const scale = useMemo(() => {
         const baseScale = Math.min(viewport.width, viewport.height) * 0.15;
@@ -311,22 +309,22 @@ const TexturedCylinder = memo(({ deviceType }) => {
     useFrame((state, delta) => {
         if (meshRef.current) {
             // Smooth rotation with delta time for consistent speed across different frame rates
-            const rotationSpeed = deviceType === 'mobile' ? 0.6 : 0.8;
+            const rotationSpeed = deviceType === 'mobile' ? 0.3 : 0.3;
             meshRef.current.rotation.y += delta * rotationSpeed;
         }
     });
 
     return (
-        <mesh 
-            ref={meshRef} 
-            rotation={[-6.15, 2, -0.04]} 
-            position={[0, 0, 0]} 
+        <mesh
+            ref={meshRef}
+            rotation={[-6.15, 2, -0.04]}
+            position={[0, 0, 0]}
             scale={scale}
         >
             <cylinderGeometry args={geometryArgs} />
-            <meshStandardMaterial 
-                map={tex} 
-                transparent 
+            <meshStandardMaterial
+                map={tex}
+                transparent
                 side={THREE.DoubleSide}
                 alphaTest={0.1}
             />
@@ -342,22 +340,22 @@ const CameraUpdater = memo(({ zSpring }) => {
 
     useFrame(() => {
         targetPosition.current = zSpring.get();
-        
+
         // Smooth interpolation for camera movement
         const lerpFactor = 0.08; // Adjust for smoother/faster movement
         currentPosition.current = THREE.MathUtils.lerp(
-            currentPosition.current, 
-            targetPosition.current, 
+            currentPosition.current,
+            targetPosition.current,
             lerpFactor
         );
-        
+
         camera.position.z = currentPosition.current;
-        
+
         // Ensure camera is always centered
         camera.position.x = 0;
         camera.position.y = 0;
         camera.lookAt(0, 0, 0);
-        
+
         // Update camera aspect ratio for proper centering
         camera.aspect = viewport.width / viewport.height;
         camera.updateProjectionMatrix();

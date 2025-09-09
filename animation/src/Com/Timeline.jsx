@@ -21,10 +21,10 @@ const Timeline = () => {
                 setIsMobile(window.innerWidth <= 768);
             }, 100);
         };
-        
+
         checkMobile();
         window.addEventListener('resize', checkMobile);
-        
+
         return () => {
             clearTimeout(timeoutId);
             window.removeEventListener('resize', checkMobile);
@@ -36,7 +36,7 @@ const Timeline = () => {
         target: timelineRef,
         offset: ["start center", "end center"]
     });
-    
+
     const timelineHeight = useTransform(scrollYProgress, [0, 1], [100, 1000]);
 
     // Optimized spring animations with reduced stiffness
@@ -48,7 +48,7 @@ const Timeline = () => {
         let animationFrameId;
         const handleMouseMove = (e) => {
             if (animationFrameId) return;
-            
+
             animationFrameId = requestAnimationFrame(() => {
                 if (!mainDivRef.current) {
                     animationFrameId = null;
@@ -76,7 +76,7 @@ const Timeline = () => {
         if (!isMobile) {
             window.addEventListener("mousemove", handleMouseMove);
         }
-        
+
         return () => {
             if (animationFrameId) {
                 cancelAnimationFrame(animationFrameId);
@@ -99,7 +99,7 @@ const Timeline = () => {
         { time: "8:00 AM", event: "Team Registration", },
         { time: "10:00 AM", event: "Opening Ceremony", },
         { time: "11:00 AM", event: "Hackathon Begins", },
-        { time: "2:00 PM", event: "Mentor Sessions",  },
+        { time: "2:00 PM", event: "Mentor Sessions", },
         { time: "04:00 PM", event: "Coffee Break", },
         { time: "05:00 PM", event: "Workshop", },
         { time: "09:00 PM", event: "Networking Session", },
@@ -111,7 +111,7 @@ const Timeline = () => {
         const starArray = [];
         const gridCols = isMobile ? 6 : 8; // Reduced from 10
         const gridRows = isMobile ? 4 : 6; // Reduced from 8
-        
+
         for (let row = 0; row < gridRows; row++) {
             for (let col = 0; col < gridCols; col++) {
                 // Reduced star density
@@ -121,7 +121,7 @@ const Timeline = () => {
                     const sizeVariant = (row + col) % 3;
                     const size = sizeVariant === 0 ? 2 : sizeVariant === 1 ? 1.5 : 1;
                     const animationDelay = (row * gridCols + col) % 4;
-                    
+
                     starArray.push({
                         id: row * gridCols + col,
                         top,
@@ -207,12 +207,12 @@ const Timeline = () => {
                 `}
             </style>
 
-            <div 
+            <div
                 {...(!isMobile && {
                     'data-scroll': true,
                     'data-scroll-speed': '-.8'
                 })}
-                ref={mainDivRef} 
+                ref={mainDivRef}
                 className='relative -z-10 pt-64 pb-64 overflow-hidden'
                 style={{
                     background: 'linear-gradient(to bottom, #000000 0%, #101828 100%)'
@@ -241,8 +241,8 @@ const Timeline = () => {
                 {!isMobile && (
                     <motion.div
                         className="absolute w-[500px] h-[500px] opacity-30 rounded-full filter blur-[60px] z-0 mix-blend-screen morphing-blob"
-                        style={{ 
-                            x: springX, 
+                        style={{
+                            x: springX,
                             y: springY,
                             background: "radial-gradient(circle at 30% 30%, rgba(236, 72, 153, 0.8), rgba(59, 130, 246, 0.6), rgba(139, 92, 246, 0.4))"
                         }}
@@ -285,9 +285,9 @@ const Timeline = () => {
                 {/* Timeline Container */}
                 <div ref={timelineRef} className="w-full h-fit flex text-white items-start relative z-10">
                     {/* Animated Vertical Line */}
-                    <motion.div 
+                    <motion.div
                         className="relative w-[3px] mx-7 sm:mx-14 md:mx-32 lg:mx-52 my-3 rounded-full"
-                        style={{ 
+                        style={{
                             height: timelineHeight,
                             background: "linear-gradient(to bottom, #ec4899, #3b82f6, #8b5cf6)",
                             boxShadow: "0 0 20px 4px rgba(236, 72, 153, 0.6), 0 0 40px 8px rgba(59, 130, 246, 0.4)"
@@ -304,7 +304,7 @@ const Timeline = () => {
                                 }}
                                 initial={{ scale: 0, opacity: 0 }}
                                 animate={{ scale: 1, opacity: 1 }}
-                                transition={{ 
+                                transition={{
                                     delay: i * 0.15, // Reduced delay
                                     type: "spring",
                                     stiffness: 150, // Reduced from 200
@@ -321,7 +321,7 @@ const Timeline = () => {
                             <motion.div
                                 key={i}
                                 className="absolute time-badge rounded-full px-3 py-1 font-semibold text-white whitespace-nowrap"
-                                style={{ 
+                                style={{
                                     top: `${difference * i - 10}px`,
                                     left: "-10px"
                                 }}
@@ -349,28 +349,25 @@ const Timeline = () => {
                                 style={{ top: `${difference * i - 15}px` }}
                                 initial={{ x: 100, opacity: 0 }}
                                 animate={{ x: 0, opacity: 1 }}
-                                transition={{ 
+                                transition={{
                                     delay: i * 0.15, // Reduced delay
                                     type: "spring",
                                     stiffness: 80, // Reduced from 100
                                     damping: 25 // Increased damping
                                 }}
-                                whileHover={{ 
+                                whileHover={{
                                     scale: isMobile ? 1.01 : 1.02,
                                     x: isMobile ? 5 : 10,
                                 }}
                             >
                                 <div className="flex items-center gap-2 sm:gap-3">
-                                    <span className="text-lg sm:text-xl md:text-2xl lg:text-3xl flex-shrink-0" 
-                                          style={{ animation: `float 3s ease-in-out ${i * 0.5}s infinite` }}>
+                                    <span className="text-lg sm:text-xl md:text-2xl lg:text-3xl flex-shrink-0"
+                                        style={{ animation: `float 3s ease-in-out ${i * 0.5}s infinite` }}>
                                         {item.icon}
                                     </span>
                                     <div className="flex-1 min-w-0">
                                         <div className="font-bold text-sm sm:text-base md:text-lg lg:text-xl bg-gradient-to-r from-pink-300 to-blue-300 bg-clip-text text-transparent leading-tight">
                                             {item.event}
-                                        </div>
-                                        <div className="text-xs text-gray-300 opacity-70 sm:hidden">
-                                            Tap for details
                                         </div>
                                     </div>
                                 </div>
