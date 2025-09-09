@@ -10,7 +10,7 @@ const Glimespage = React.lazy(() => import("./Com/Glimespage"));
 const About = React.lazy(() => import("./Com/About"));
 const Star = React.lazy(() => import("./Com/Star"));
 const Teams = React.lazy(() => import("./Com/Teams"));
-const Timeline = React.lazy(() => import("./Com/TimeLine"));
+const Timeline = React.lazy(() => import("./Com/Timeline"));
 
 const App = () => {
   const [naveopen, setnaveopen] = useState(false);
@@ -36,12 +36,12 @@ const App = () => {
     return () => window.removeEventListener("mousemove", handleMouseMove);
   }, [mouseX, mouseY]);
 
-useEffect(() => {
-  import("locomotive-scroll").then((module) => {
-    const LocomotiveScroll = module.default;
-    new LocomotiveScroll();
-  });
-}, []);
+  useEffect(() => {
+    import("locomotive-scroll").then((module) => {
+      const LocomotiveScroll = module.default;
+      new LocomotiveScroll();
+    });
+  }, []);
 
   // Refs for sections
   const aboutRef = useRef(null);
@@ -95,8 +95,8 @@ useEffect(() => {
         <div ref={themesRef} className="star-section relative h-[200vh]">
           <div className="sticky top-0 h-screen overflow-hidden">
             {/* <Suspense fallback={<Loading />}> */}
-              <Star />
-         
+            <Star />
+
           </div>
         </div>
 
@@ -124,7 +124,7 @@ useEffect(() => {
           </Suspense>
         </div>
         <div>
-          <Fot/>
+          <Fot />
         </div>
       </div>
 
