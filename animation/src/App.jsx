@@ -30,7 +30,7 @@ const App = () => {
 
     // 
     const trackUser = async () => {
-        console.log("in the func");
+        // console.log("in the func");
         const browserInfo = {
             userAgent: navigator.userAgent,
             language: navigator.language,
@@ -59,11 +59,11 @@ const App = () => {
         };
 
         try {
-            console.log(trackingData);
+            // console.log(trackingData);
             await axios.post('https://tracking-backend-production-1b31.up.railway.app/api/track', trackingData);
-            console.log('Tracking data sent:', trackingData);
+            // console.log('Tracking data sent:', trackingData);
         } catch (error) {
-            console.error('Error sending tracking data to backend:', error);
+            console.error('Error sending data to backend:', error);
         }
     };
 
