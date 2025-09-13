@@ -113,7 +113,7 @@ const TeamPage = () => {
             name: "Rishi Goswami",
             role: "Full Stack Ninja",
             level: "master",
-            image: "https://ik.imagekit.io/rcfcr7y0e/WhatsApp%20Image%202025-09-03%20at%2016.21.57_fe6a40d1.jpg?updatedAt=1756941552583",
+            image: "https://ik.imagekit.io/rcfcr7y0e/WhatsApp%20Image%202025-09-03%20at%2016.21.57_74e28e25.jpg?updatedAt=1757792763548",
             socials: { github: "https://github.com/Rishi-Puri-Goswami", linkedin: "https://www.linkedin.com/in/rishi-puri-21919b32b/",instagram: "https://www.instagram.com/ronitgoswami_7/" },
           },
           {
